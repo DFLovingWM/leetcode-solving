@@ -1,0 +1,27 @@
+{
+  "name": "leetcode-solving",
+  "version": "1.0.0",
+  "description": "Ways and experience from solving leetcode problems.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DFLovingWM/leetcode-solving.git"
+  },
+  "keywords": [
+    "leetcode"
+  ],
+  "author": "JK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DFLovingWM/leetcode-solving/issues"
+  },
+  "homepage": "https://github.com/DFLovingWM/leetcode-solving#readme",
+  "devDependencies": {
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^5.2.0",
+    "power-assert": "^1.6.1"
+  }
+}
