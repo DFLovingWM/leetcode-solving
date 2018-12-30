@@ -1,5 +1,6 @@
 /**
  * 转化为[01背包问题]，并且是“恰好放满背包”
+ * 用时[196ms]
  */
 function canPartition (nums) {
   const sum = nums.reduce((acc, item) => acc + item, 0)
@@ -15,7 +16,7 @@ function canPartition (nums) {
     }
   }
 
-  return f[volume]
+  return f[volume] // 当然，这里其实可以前置到循环中，更快终止
 }
 
 module.exports = canPartition
