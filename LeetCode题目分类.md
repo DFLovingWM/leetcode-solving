@@ -1,1 +1,3 @@
-- permutations: 46, 31
+- permutations: 46, 47，31
+- Lowest Common Ancestor: 235, 236
+- N Sum问题：1、15、18

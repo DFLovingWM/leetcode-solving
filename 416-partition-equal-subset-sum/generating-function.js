@@ -7,17 +7,23 @@ function canPartition (nums) {
 
   const target = sum / 2
   let c1 = Array.from({ length: target + 1 }, () => 0)
-  let c2 = Array.from({ length: target + 1 }, () => 0)
   c1[0] = 1
+  let c2 = [...c1]
   for (const num of nums) {
     for (let i = 0; i + num <= target; ++i) {
-      c2[i + num] += c1[i]
+      c2[i + num] += c1[i] // 两种路径的组合数相加
     }
+
+    // console.log('c1: ', c1)
+    // console.log('c2: ', c2)
+
     for (let i = 0; i <= target; ++i) {
-      c1[i] += c2[i]
-      c2[i] = 0
+      c1[i] = c2[i]
+      c2[i] = c1[i]
     }
   }
 
   return c1[target] > 0
 }
+
+module.exports = canPartition
