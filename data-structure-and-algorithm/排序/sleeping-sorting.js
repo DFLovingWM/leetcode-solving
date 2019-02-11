@@ -1,3 +1,11 @@
+/**
+ * 睡眠排序：利用系统的setTimeout函数，对每一个数字进行setTimeout，醒来时加入新数组，就得到有序数组。
+ * 非常tricky，适用范围小，有以下特点：
+ * 1. 非负数排序。因为setTimeout传入的时间值至少为0。
+ * 2. 最大值不能太大。因为耗时取决于最大值。
+ * 3. 数字不能太多。因为数量决定了定时器线程数。
+ * 4. 接口是异步，不方便。
+ */
 async function sleepSorting (arr) {
   function sleep (n) {
     return new Promise((resolve, reject) => {
