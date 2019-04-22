@@ -10,7 +10,8 @@ function strWithout3a3b (A, B) {
 
   while (A + B > 0) {
     let { length } = result
-    if (length >= 2 && result[length - 1] === result[length - 2]) { // Dangerous: if there has been 2 consecutively same letters, then add a different letter
+
+    if (length >= 2 && result[length - 1] === result[length - 2]) { // Dangerous: if there has been 2 consecutively same letters, then add a different letter。
       if (result[length - 1] === 'a') {
         // add 'b'
         --B
@@ -20,7 +21,7 @@ function strWithout3a3b (A, B) {
         --A
         result += 'a'
       }
-    } else { // Safe, then add a letter that remains more(greedy)
+    } else { // Safe, then add a letter that remains more(greedy)。
       if (A > B) {
         --A
         result += 'a'

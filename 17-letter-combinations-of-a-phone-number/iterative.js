@@ -10,7 +10,11 @@ const MAPPING = {
 }
 
 /**
- * 递推(for循环的设计)[52ms]
+ * 递推(BFS)
+ * [52ms]
+ * 
+ * 同样的BFS解法：
+ * https://leetcode.com/problems/letter-combinations-of-a-phone-number/discuss/8097/My-iterative-sollution-very-simple-under-15-lines
  */
 function letterCombinations (digits) {
   digits = Array.from(digits).filter(item => !'01'.includes(item)) // 除去0、1

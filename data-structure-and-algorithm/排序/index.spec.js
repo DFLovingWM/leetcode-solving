@@ -6,7 +6,8 @@ const assert = require('assert')
 // const sort = require('./quick-sort-v1')
 // const sort = require('./quick-sort-v2')
 // const sort = require('./quick-sort-v2-old')
-const sort = require('./heap-sort')
+// const sort = require('./heap-sort')
+const { mergeSortForArray: sort } = require('./merge-sort')
 
 
 describe('测试排序', () => {
