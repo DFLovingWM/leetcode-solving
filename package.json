@@ -4,7 +4,8 @@
   "description": "Ways and experience from solving leetcode problems.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "spec": "$(npm bin)/mocha --r intelli-espower-loader"
   },
   "repository": {
     "type": "git",

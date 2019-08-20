@@ -4,7 +4,6 @@
 - Lowest Common Ancestor: 235, 236
 - N Sum问题：1、15、18
 
-
 ## 前缀和的应用
 
 - 560：典型，子数组的和
@@ -24,6 +23,14 @@
     - sliding window
   - 等于K的倍数。[523](https://leetcode.com/problems/continuous-subarray-sum/)
     - prefixs sum。正常遍历需要O(M)或O(N)，不过可以使用mod优化为O(1)
+
+## 背包问题（Knapsack）
+
+- 01背包
+- 完全背包（只是值表示的意义不同）
+  - 322
+  - 518
+- 多重背包
 
 ## 分段问题
 
