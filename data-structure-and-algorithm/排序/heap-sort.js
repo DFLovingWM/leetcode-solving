@@ -4,10 +4,10 @@
 function heapSort (arr) {
   buildHeap(arr)
 
-  for (let i = arr.length - 1; i >= 1; --i) {
+  for (let i = arr.length - 1; i >= 1; --i) { // n-1 次
     let temp = arr[i]
-    arr[i] = arr[0] // 位置0为最大值，(如果是顺序则)将它放到后面
-    insert(arr, 0, i - 1, temp)
+    arr[i] = arr[0] // 将最大值交换到最后
+    insert(arr, 0, i - 1, temp) // 原尾元素参与堆维护：O(logN)
   }
 
   return arr
@@ -15,6 +15,7 @@ function heapSort (arr) {
 
 /**
  * 建堆
+ * O(NlogN)
  */
 function buildHeap (arr) {
   for (let i = Math.floor(arr.length / 2) - 1; i >= 0; --i) {
@@ -24,11 +25,7 @@ function buildHeap (arr) {
 
 /**
  * 插入新元素(同时维护堆)
- * @param {Array<Number>} arr 数组
- * @param {Number} low 最小下标，该位置是个空位
- * @param {Number} high 最大下标，注意它是个有效下标
- * @param {Number} newElement 要插入的元素
- * @returns {void}
+ * O(logN)
  */
 function insert (arr, low, high, newElement) {
   let large = low * 2 + 1 // 此时low是空位

@@ -19,5 +19,3 @@ var maxSubArray = function(nums) {
 
   return result
 }
-
-module.exports = maxSubArray

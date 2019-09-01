@@ -1,26 +1,19 @@
 /**
- * Prefix sum + Hash
- * T(N), S(N)
- * [136ms]
- * 参考：https://leetcode.com/problems/subarray-sum-equals-k/discuss/102106/Java-Solution-PreSum-%2B-HashMap
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
+ * 前缀和 + Map/Hash：O(N)
+ * 可以参考：https://leetcode.com/problems/subarray-sum-equals-k/discuss/102106/Java-Solution-PreSum-%2B-HashMap
  */
-function subarraySum (nums, target) {
-  let prefixSumCount = {}
-  prefixSumCount[0] = 1
+function subarraySum (nums, targetSum) {
+  const count = new Map()
+  count.set(0, 1)
 
-  let sum = 0, count = 0
+  let sum = 0
+  let res = 0
   for (const num of nums) {
     sum += num
-    count += prefixSumCount[sum - target] || 0
-
-    if (!prefixSumCount.hasOwnProperty(sum)) prefixSumCount[sum] = 0
-    ++prefixSumCount[sum]
+    if (count.has(sum - targetSum)) {
+      res += count.get(sum - targetSum)
+    }
+    count.set(sum, (count.get(sum) || 0) + 1)
   }
-
-  return count
+  return res
 }
-
-module.exports = subarraySum
