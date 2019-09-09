@@ -1,12 +1,17 @@
-# 47
+# 47. 全排列2
 
-46题的unique版本
+## 题意
+
+给定的数字中存在重复元素，求所有不重复的排列。
 
 ## 思路
 
-完全按照46的做法来、然后去重，当然是一种(笨)办法。
+有至少2种思路：
 
-但是更好的办法是DFS的时候，不对重复的元素进行DFS：
-
-1. 排序：因为题目给定的序列不是有序的。
-2. 开始DFS：每一层遍历数组的每一个数字时，如果与前一个数字相等，那就跳过这个数字不进入递归。这样就可以达到去重的目的。
+- 全排列+去重，具体解法：
+  - DFS + HashSet
+  - BFS + HashSet
+- （不用HashSet的解法）剪枝：先对原始排列进行排序、以让重复元素聚集在一起，然后在要取下一个数字时，重复的数字只取一次。具体解法：
+  - DFS：需要先排序，然后递归前剪枝
+  - BFS：遇到重复元素就break（而不是continue），直接轮到下一个旧序列。@todo：原理不是太清楚。参考[
+Java Iterative solution, no Set needed!](https://leetcode.com/problems/permutations-ii/discuss/18630/Java-Iterative-solution-no-Set-needed!)

@@ -1,40 +1,27 @@
 /**
- * 这里只实现最小堆
- * API设计参考Python的`heapq`模块
- */
-
-/**
  * 将数组转化为堆
- * @param {Array<T>} 原数组
- * @returns {Array<T>} 堆（也是个数组）
  */
-function heapify (arr) {
+function heapify (arr, comparator) {
   let heap = []
   for (const item of arr) {
-    heapPush(heap, item)
+    heapPush(heap, item, comparator)
   }
   return heap
 }
 
 /**
  * 将新元素插入堆，并维护堆的不变性
- * @param {Array<T>} heap 堆
- * @param {T} item 新元素
  */
-function heapPush (heap, item) {
-  let cur = heap.length
-
+function heapPush (heap, item, comparator) {
   // 尾部加入
   heap.push(item)
 
   // 调整堆（新元素在尾部，所以是bottom-up）
-  while (true) {
-    if (cur === 0) { // 到达root了，调整完毕
-      break
-    }
+  let cur = heap.length - 1
+  while (cur > 0) { // 只要不是root（就有parent需要比较）
     let parent = Math.floor((cur - 1) / 2)
-    if (heap[cur] < heap[parent]) { // 比父结点要小，上位
-      [heap[cur], heap[parent]] = [heap[parent], heap[cur]]
+    if (comparator(heap[cur], heap[parent])) { // 满足上位条件
+      swap(heap, parent, cur)
       cur = parent
     } else {
       break
@@ -44,17 +31,10 @@ function heapPush (heap, item) {
 
 /**
  * 弹出最小元素，并维护堆的不变性
- * @param {Array<T>} heap 堆
- * @returns {T} 最小元素
  */
-function heapPop (heap) {
-  let length = heap.length
-  if (length === 0) {
-    throw new Error('堆中无元素')
-  }
-
+function heapPop (heap, comparator) {
   // 头尾元素交换，为的是让最小元素从尾巴弹出
-  [heap[0], heap[length - 1]] = [heap[length - 1], heap[0]]
+  swap(heap, 0, heap.length - 1)
   const result = heap.pop()
 
   // 调整堆（新元素在头部，所以是top-down）
@@ -63,12 +43,12 @@ function heapPop (heap) {
     let left = cur * 2 + 1
     let right = left + 1
 
-    // 注：这个条件分支安排得非常完美！！！
-    if (right < heap.length && heap[right] < heap[cur] && heap[right] < heap[left]) { // 如果右子结点存在、并且最小
-      [heap[right], heap[cur]] = [heap[cur], heap[right]]
+    // 注：这个条件分支安排得非常完美！
+    if (right < heap.length && comparator(heap[right], heap[cur]) && comparator(heap[right], heap[left])) { // 如果右子结点存在、并且满足上位条件
+      swap(heap, right, cur)
       cur = right
-    } else if (left < heap.length && heap[left] < heap[cur]) { // (这个分支可以不考虑右子结点了)
-      [heap[left], heap[cur]] = [heap[cur], heap[left]]
+    } else if (left < heap.length && comparator(heap[left], heap[cur])) { // (这个分支可以不考虑右子结点了)如果左子结点存在、并且满足上位条件
+      swap(heap, left, cur)
       cur = left
     } else { // (这个分支可以不考虑右、左子结点了)
       break
@@ -76,6 +56,10 @@ function heapPop (heap) {
   }
 
   return result
+}
+
+function swap (arr, i, j) {
+  [arr[i], arr[j]] = [arr[j], arr[i]]
 }
 
 /**

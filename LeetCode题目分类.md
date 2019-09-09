@@ -1,8 +1,16 @@
-# 大分类
+# LeetCode题目分类
 
-- permutations: 46, 47，31, 556
-- Lowest Common Ancestor: 235, 236
-- N Sum问题：1、15、18
+分类的根据
+
+- 根据题型来分
+- 根据思路/解法/算法来分
+- 根据数据结构来分
+
+LeetCode网站已经实现了这种多维度的分类，很容易满足用户需求。在这里我们主要根据题型来分。
+
+## 未分类
+
+Lowest Common Ancestor: 235, 236
 
 ## 前缀和的应用
 
@@ -10,25 +18,30 @@
 - 974：稍微变形，和变为整除
 - 437：二叉树中，子路径的和
 
-## K sum问题
+## K-Sum问题
+
+K个数之和为sum的问题。其中，K是确定的。
 
 思路：
 
-- 排序 + 递归 + 双指针
+通用解法：排序 + 回溯剪枝 + 双指针(等值、非等值搜索)/Hash(等值搜索)
+时间复杂度：O(N ^ (K - 1))
 
 题目：
 
-- K sum问题：递归 + two pointers
+- [1. 两数之和(K=2)](https://leetcode-cn.com/problems/two-sum/)
+- [15. 三数之和(K=3)](https://leetcode-cn.com/problems/3sum/)
+- [18. 四数之和](https://leetcode-cn.com/problems/4sum/)
+- [216. 组合总和3(其实是K-sum问题)](https://leetcode-cn.com/problems/combination-sum-iii/submissions/)
+- [259. 三数之和小于K](https://leetcode-cn.com/problems/3sum-smaller/)
+
+题目：
+
 - sum问题：bitset/母函数/背包
 - Sub-array sum/product问题：
   - 等于K：即相等搜索，prefix sum + O(1)查找。
     - 基础：[560](https://leetcode.com/problems/subarray-sum-equals-k/)
     - 二叉树上的prefix sum：[437. Path Sum III](https://leetcode.com/problems/path-sum-iii/)
-  - 小于或大于K：即范围搜索。[713](https://leetcode.com/problems/subarray-product-less-than-k/solution/)
-    - binary search，O(logN)
-    - sliding window
-  - 等于K的倍数。[523](https://leetcode.com/problems/continuous-subarray-sum/)
-    - prefixs sum。正常遍历需要O(M)或O(N)，不过可以使用mod优化为O(1)
 
 ## 子数组问题
 
@@ -59,9 +72,9 @@
 
 ## 数组删除元素问题
 
-- 27、删除目标元素
-- 26、删除重复元素
-- 80、减少重复元素
+- [27. 删除目标元素](https://leetcode-cn.com/problems/remove-element/)
+- [26. 删除重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
+- [80. 减少重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 ## 变形的二分查找
 
@@ -71,10 +84,48 @@
 - [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
 - [81. 搜索旋转排序数组2（有重复元素）](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/submissions/)
 
+## Top K问题
+
+思路：
+
+- 排序是最简单的方法，时间O(NlogN)
+- 通常维护大小为K的堆来将时间复杂度降低到`O(NlogK)`。这里通过分析K的大小，做一些时空优化：
+  - K比较小 => 维护大小为`K`的最差堆：每次遍历，新元素跟堆顶（最差）元素进行比较，挑选更好的；最终剩余的`K`个就是最好的。
+  - K比较大 => 维护大小为`N-K`的最好堆：每次遍历，新元素跟堆顶（最好）元素进行比较，然后挑选更差的；最终剩余的`N-K`个就是最差的，用全集减去这些，就是`K`个最好的。
+- 在一定条件下（类似于“频次”的题目），可以使用“索引排序”来达到`O(N)`时间
+
+题目：
+
+- [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)
+- [451. 根据字符出现频率排序](https://leetcode-cn.com/problems/sort-characters-by-frequency/)
+- [692. 前K个高频单词，字典序升序输出](https://leetcode-cn.com/problems/top-k-frequent-words/)
+
+## backtrack问题
+
+backtrack专指“状态空间搜索”问题中的DFS解法。LeetCode上已经有人整理了[backtrack通用解法的思路以及使用场景](https://leetcode.com/problems/subsets/discuss/27281/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning))。
+
+另外，它一般对应有“迭代（BFS）”解法，思路一般都类似，在此暂不讨论。
+
+题目：
+
+- [46. 全排列(无重复元素)](https://leetcode-cn.com/problems/permutations/)
+- [47. 全排列(有重复元素)](https://leetcode-cn.com/problems/permutations-ii/)
+- [31. 下一个排列(C++ API)](https://leetcode-cn.com/problems/next-permutation/)
+- [556. 下一个更大元素(排列)](https://leetcode-cn.com/problems/next-greater-element-iii/)
+
+- [78. 集合(无重复元素)的子集](https://leetcode-cn.com/problems/subsets/solution/hui-su-suan-fa-by-powcai-5/)
+- [90. 序列(有重复元素)的子集](https://leetcode-cn.com/problems/subsets-ii/submissions/)
+
+- [39. 组合总和(无限)](https://leetcode-cn.com/problems/combination-sum/)
+- [40. 组合总和(有限)](https://leetcode-cn.com/problems/combination-sum-ii/)
+- []()
+
 ## 背包问题（Knapsack）
 
 - 01背包
-- 完全背包（只是值表示的意义不同）
+- (类)完全背包
+  - [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+  - [377. 组合总和4](https://leetcode-cn.com/problems/combination-sum-iv/)
   - 322
   - 518
 - 多重背包

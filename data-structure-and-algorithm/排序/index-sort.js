@@ -1,8 +1,11 @@
 /**
  * 下标排序法，用空间S(M)换时间T(N)
  * 适用范围较小，需满足：
- * 1. 只能对自然数排序(下标的特点)。
- * 2. 数字中的最大值不能太大(数组大小)。
+ * 1. 非负整数(下标的特点)
+ * 2. 数字最大值不能太大(数组长度限制)
+ * 
+ * 这个方法很巧妙，相关题目：
+ * - https://leetcode.com/problems/top-k-frequent-elements/discuss/81602/Java-O(n)-Solution-Bucket-Sort
  */
 function indexSort (arr) {
   // 找到最大值，确定hash数组大小
