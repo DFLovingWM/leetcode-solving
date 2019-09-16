@@ -1,7 +1,7 @@
 /**
- * 逆序维护有序数组，每次进行二分查找
- * O(NlogN)，耗时88ms
- * 存疑：splice操作需要移动后续元素，复杂度为O(N)，整个算法也是O(N2)？
+ * 维护有序数组，进行二分查找
+ * 
+ * 时间：O(N^2)
  */
 var countSmaller = function(nums) {
   const sortedArr = []
@@ -9,7 +9,7 @@ var countSmaller = function(nums) {
   for (let num of nums.reverse()) {
     const pos = bisectLeft(sortedArr, 0, sortedArr.length, num)
     result.push(pos)
-    sortedArr.splice(pos, 0, num)
+    sortedArr.splice(pos, 0, num) // 这一步是败笔，需要O(N)，总体复杂度就上升了
   }
   return result.reverse()
 };
