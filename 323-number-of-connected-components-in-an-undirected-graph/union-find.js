@@ -1,4 +1,14 @@
-// 数据结构：并查集
+/**
+ * 并查集求连通分量数
+ */
+var countComponents = function(n, edges) {
+  const uf = new UnionFind(n)
+  for (const [a, b] of edges) {
+    uf.union(a, b)
+  }
+  return uf.getBlockCount()
+};
+
 class UnionFind {
   constructor (length) {
     this.father = Array.from({ length }, (_, index) => index)
@@ -33,3 +43,10 @@ class UnionFind {
     return set.size
   }
 }
+
+[
+  [5, [[0, 1], [1, 2], [3, 4]]],
+  [5, [[0, 1], [1, 2], [2, 3], [3, 4]]],
+].forEach(input => {
+  console.log(countComponents(...input))
+})
