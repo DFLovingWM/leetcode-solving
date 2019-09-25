@@ -1,58 +1,22 @@
 /**
- * 二分查找
+ * 参考答案：二分查找左边界
+ * 时间：O(log(N - K) + K)
+ * 空间：O(1)
  */
-var findClosestElements = function(arr, count, target) {
-  const index = bisectLeft(arr, 0, arr.length, target)
+var findClosestElements = function(arr, K, target) {
+  let [left, right] = [0, arr.length - K] // 左闭右闭
+  
+  while (left < right) {
+    const middle = left + (right - left >> 1)
 
-  let L, R
-
-  if (arr[index] === target) { // 存在
-    if (count & 1) { // 奇
-      let offset = (count - 1) / 2
-      L = index - offset
-      R = index + offset
-    } else {// 偶
-      L = index - count / 2
-      R = index + count / 2 - 1
-    }
-  } else { // 不存在
-    if (count & 1) {
-      L = index - 1 - (count - 1) / 2
-      R = index - 1 + (count - 1) / 2
+    if (target - arr[middle] <= arr[middle + K] - target) {
+      right = middle
     } else {
-      L = index - count / 2
-      R = index + count / 2 - 1
+      left = middle + 1
     }
   }
-  console.log('结果:', L, R)
 
-  // 调整负数下标
-  if (L < 0) {
-    [L, R] = [0, R + (0 - L)]
-  } else if (R >= arr.length) {
-    [L, R] = [L - (R - arr.length + 1), arr.length - 1]
-  }
-  console.log('调整后结果:', L, R)
-
-  return arr.slice(L, R + 1)
+  return arr.slice(left, left + K)
 };
 
-function bisectLeft (arr, left, right, target) {
-  while (left < right) {
-    let middle = left + Math.floor((right - left) / 2)
-    if (target > arr[middle]) {
-      left = middle + 1
-    } else {
-      right = middle
-    }
-  }
-  return left
-}
-
-[
-  // [[1,2,3,4,5], 4, 3],
-  // [[1,2,3,4,5], 4, -1],
-  [[0,1,1,1,2,3,6,7,8,9], 9, 4],
-].forEach(input => {
-  console.log(findClosestElements(...input))
-})
+module.exports = findClosestElements
