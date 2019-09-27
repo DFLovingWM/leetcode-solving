@@ -19,7 +19,31 @@ var maxSlidingWindow = function(nums, k) {
   return res
 };
 
-// const Deque = require('../data-structure-and-algorithm/双端队列/index')
+// 单调递减的双端队列
+class MonotonicQueue {
+  constructor () {
+    this.deque = new Deque()
+  }
+
+  push (x) {
+    while (!this.deque.empty() && this.deque.back() < x) { // 维护单调递减性
+      this.deque.popBack()
+    }
+    this.deque.pushBack(x)
+  }
+
+  pop (x) {
+    if (!this.deque.empty() && this.deque.front() === x) {
+      this.deque.popFront()
+    }
+  }
+  
+  max () {
+    return this.deque.front() // 头元素最大
+  }
+}
+
+// ====================== 双端队列实现 ======================
 
 // 双向链表结点
 function Node (val) {
@@ -107,30 +131,6 @@ class Deque {
 
   empty () {
     return this.size() === 0
-  }
-}
-
-// 单调递减的双端队列
-class MonotonicQueue {
-  constructor () {
-    this.deque = new Deque()
-  }
-
-  push (x) {
-    while (!this.deque.empty() && this.deque.back() < x) { // 维护单调递减性
-      this.deque.popBack()
-    }
-    this.deque.pushBack(x)
-  }
-
-  pop (x) {
-    if (!this.deque.empty() && this.deque.front() === x) {
-      this.deque.popFront()
-    }
-  }
-  
-  max () {
-    return this.deque.front() // 头元素最大
   }
 }
 

@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./239-sliding-window-maximum/test')
+require('./94-binary-tree-inorder-traversal/test')

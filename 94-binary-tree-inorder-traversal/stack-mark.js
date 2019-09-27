@@ -1,27 +1,30 @@
 /**
- * stack：先压右、再压左
- * 
- * 时间：56ms
+ * stack + 标记
+ * 时间：O(N), 64ms
+ * 空间：O(N), 33.6MB
  */
-var preorderTraversal = function(root) {
+var inorderTraversal = function(root) {
   const res = []
   if (!root) return res
-
+  
+  const hasVisitedLeft = new Set() // 标记某个结点是否已经遍历过left
   const stack = new Stack()
   stack.push(root)
 
   while (!stack.empty()) {
-    const curr = stack.pop()
+    const curr = stack.top()
 
-    // 遍历本结点
+    if (!hasVisitedLeft.has(curr) && curr.left) {
+      stack.push(curr.left)
+      hasVisitedLeft.add(curr)
+      continue
+    }
+
+    stack.pop()
     res.push(curr.val)
 
-    // 先将右结点压栈，再将左结点压栈。这样以来，之后左结点会先遍历
     if (curr.right) {
       stack.push(curr.right)
-    }
-    if (curr.left) {
-      stack.push(curr.left)
     }
   }
 
@@ -37,8 +40,8 @@ class Stack {
     return this.arr.length === 0
   }
 
-  push (x) {
-    this.arr.push(x)
+  push (newElement) {
+    this.arr.push(newElement)
   }
 
   pop () {
