@@ -1,7 +1,5 @@
 /**
- * Recursive version.
- * @param {TreeNode} root
- * @return {number[]}
+ * 递归
  */
 function postorderTraversal (root) {
   if (!root) return []

@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./94-binary-tree-inorder-traversal/test')
+require('./589-n-ary-tree-preorder-traversal/test')

@@ -1,7 +1,7 @@
 /**
  * 递归法
+ * 
  * 时间：748ms
- * 空间：82.2MB
  */
 var postorder = function(node) {
   if (!node) return []

@@ -1,9 +1,9 @@
 /**
- * stack：先压左、再压右，得到反路径
+ * stack：先压右、再压左
  * 
  * 时间：56ms
  */
-var postorderTraversal = function(root) {
+var preorderTraversal = function(root) {
   const res = []
   if (!root) return res
 
@@ -16,16 +16,16 @@ var postorderTraversal = function(root) {
     // 遍历本结点
     res.push(curr.val)
 
-    // 先将左结点压栈，再将右结点压栈。这样以来，之后右结点会先遍历
-    if (curr.left) {
-      stack.push(curr.left)
-    }
+    // 先将右结点压栈，再将左结点压栈。这样以来，之后左结点会先遍历
     if (curr.right) {
       stack.push(curr.right)
     }
+    if (curr.left) {
+      stack.push(curr.left)
+    }
   }
 
-  return res.reverse()
+  return res
 };
 
 class Stack {

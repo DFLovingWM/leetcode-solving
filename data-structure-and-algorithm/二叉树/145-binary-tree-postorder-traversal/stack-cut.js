@@ -1,7 +1,7 @@
 /**
- * stack：先压左、再压右，得到反路径
+ * stack + 斩断羁绊
  * 
- * 时间：56ms
+ * 时间：68ms
  */
 var postorderTraversal = function(root) {
   const res = []
@@ -11,23 +11,31 @@ var postorderTraversal = function(root) {
   stack.push(root)
 
   while (!stack.empty()) {
-    const curr = stack.pop()
-
-    // 遍历本结点
-    res.push(curr.val)
-
-    // 先将左结点压栈，再将右结点压栈。这样以来，之后右结点会先遍历
+    let curr = stack.top()
+    
+    // 左
     if (curr.left) {
       stack.push(curr.left)
+      curr.left = null // 删除边
+      continue
     }
+
+    // 右
     if (curr.right) {
       stack.push(curr.right)
+      curr.right = null // 删除边
+      continue
     }
+
+    // 中
+    stack.pop()
+    res.push(curr.val)
   }
 
-  return res.reverse()
+  return res
 };
 
+// 栈
 class Stack {
   constructor () {
     this.arr = []
