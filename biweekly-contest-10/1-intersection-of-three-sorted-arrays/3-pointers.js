@@ -1,5 +1,8 @@
 /**
- * 指针或者HashMap(无脑)
+ * 3指针
+ * 
+ * 时间：O(N), 60ms
+ * 空间：O(1)
  */
 var arraysIntersection = function (A, B, C) {
   let [a, b, c] = [0, 0, 0]
@@ -29,5 +32,4 @@ var arraysIntersection = function (A, B, C) {
   return common
 };
 
-let arr1 = [1,2,3,4,5], arr2 = [1,2,5,7,9], arr3 = [1,3,4,5,8]
-console.log(arraysIntersection(arr1, arr2, arr3))
+module.exports = arraysIntersection
