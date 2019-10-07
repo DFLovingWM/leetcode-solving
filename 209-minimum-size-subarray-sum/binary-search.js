@@ -1,5 +1,7 @@
 /**
- * 前缀和 + 二分查找：O(NlogN)
+ * 前缀和 + 二分查找：
+ * 
+ * 时间：O(NlogN)
  */
 var minSubArrayLen = function(K, nums) {
   let prefix = [0]

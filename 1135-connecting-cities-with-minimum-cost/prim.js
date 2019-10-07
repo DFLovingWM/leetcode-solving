@@ -37,7 +37,7 @@ var minimumCost = function(N, connections) {
     if (count === requiredEdgeCount) break
 
     // 松弛：更新到各个结点的最短距离
-    // 这里无法作修改，但只需要往queue中增加结点即可
+    // 注意这里无法作修改/删除，但只需要往queue中增加结点即可
     for (const [nextNode, weight] of next[newNode]) {
       if (!isVisited[nextNode]) {
         unvisitedQueue.add([nextNode, weight])

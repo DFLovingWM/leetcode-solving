@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./589-n-ary-tree-preorder-traversal/test')
+require('./212-word-search-ii/trie')
