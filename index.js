@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./212-word-search-ii/trie')
+require('./295-find-median-from-data-stream/test')

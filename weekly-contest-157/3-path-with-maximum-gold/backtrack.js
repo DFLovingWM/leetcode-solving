@@ -2,6 +2,8 @@ const BLOCK = 0
 
 /**
  * DFS，暴力搜索
+ * 
+ * 时间：112ms
  */
 var getMaximumGold = function (grid) {
   const [R, C] = [grid.length, grid[0].length]

@@ -1,7 +1,7 @@
 /**
  * 二分查找
  * 
- * 时间：O(NlogM)
+ * 时间：O(NlogM), 9176ms
  */
 var longestSubsequence = function (arr, difference) {
   const getIndex = new Map()

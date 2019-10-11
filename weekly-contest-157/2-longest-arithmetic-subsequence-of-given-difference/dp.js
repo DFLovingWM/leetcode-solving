@@ -1,7 +1,7 @@
 /**
  * DP：dp[n]表示到数字n的最大长度
  * 
- * 时间：O(N)
+ * 时间：O(N)，124ms
  */
 var longestSubsequence = function (arr, difference) {
   const dp = new Map()
