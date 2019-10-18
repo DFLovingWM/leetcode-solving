@@ -2,6 +2,8 @@
  * 维护2个堆：左边的大顶堆，右边的小顶堆
  * - 插入时，平衡这两个堆
  * - 查询时，看堆顶
+ * 
+ * 时间：300ms
  */
 
 var MedianFinder = function () {
@@ -9,12 +11,24 @@ var MedianFinder = function () {
   this.right = new PriorityQueue((a, b) => a < b)
 };
 
+// O(logN)
 MedianFinder.prototype.addNum = function (num) {
+  this.left.add(num)
 
+  this.right.add(this.left.poll())
+
+  if (this.right.size() > this.left.size()) {
+    this.left.add(this.right.poll())
+  }
 };
 
+// O(1)
 MedianFinder.prototype.findMedian = function () {
-
+  if (this.left.size() > this.right.size()) {
+    return this.left.peek()
+  } else {
+    return (this.left.peek() + this.right.peek()) * 0.5
+  }
 };
 
 module.exports = MedianFinder

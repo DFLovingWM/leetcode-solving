@@ -6,3 +6,11 @@
   - 时间：O(N^2)，因为寻找最大值需要O(N)，总共需要N次
 - 二分查找：参考[纸牌游戏思路](https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/dong-tai-gui-hua-she-ji-fang-fa-zhi-pai-you-xi-jia/)，实际上是`Patient Sorting`思路，然后牌堆数就是序列长度
   - 时间：O(NlogN)
+
+## 参考
+
+- [cs课件：LIS](https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/LongestIncreasingSubsequence.pdf)
+
+## 反思总结
+
+【最长上升子序列(LIS)】的模板题。

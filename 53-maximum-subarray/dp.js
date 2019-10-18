@@ -1,19 +1,19 @@
 /**
- * 设dp[i]为前i个元素的最大和
+ * 动态规划：设dp[i]为前i个元素的最大和
+ * 
+ * 时间：O(N), 80ms
  */
 var maxSubArray = function(nums) {
-  const dp = Array.from({ length: nums.length + 1 }, () => 0)
-  dp[0] = 0
-  result = -Infinity
-  for (let i = 1; i <= nums.length; ++i) {
-    dp[i] = Math.max(nums[i - 1], dp[i - 1] + nums[i - 1])
-    result = Math.max(result, dp[i])
+  const n = nums.length
+  const dp = Array.from({ length: n + 1 }, () => 0)
+  let res = -Infinity
+
+  for (let i = 1; i <= n; ++i) {
+    dp[i] = Math.max(nums[i - 1], nums[i - 1] + dp[i - 1])
+    res = Math.max(res, dp[i])
   }
-  return result
+
+  return res
 };
 
-[
-  [-2,1,-3,4,-1,2,1,-5,4]
-].forEach(arr => {
-  console.log(maxSubArray(arr))
-})
+module.exports = maxSubArray

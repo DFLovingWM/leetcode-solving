@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./295-find-median-from-data-stream/test')
+require('./122-best-time-to-buy-and-sell-stock-ii/dp');

@@ -1,11 +1,3 @@
-const COUNT = {
-  a: 1,
-  e: 2,
-  i: 4,
-  o: 2,
-  u: 1
-}
-
 const NEXTS = {
   a: ['e'],
   e: ['a', 'i'],
@@ -17,7 +9,7 @@ const NEXTS = {
 const MOD = Math.pow(10, 9) + 7
 
 /**
- * 从n=1递推
+ * 从n=1递推，层次遍历
  */
 var countVowelPermutation = function (n) {
   let count = new Map()
@@ -40,6 +32,4 @@ var countVowelPermutation = function (n) {
   return Array.from(count.values()).reduce((a, b) => (a + b) % MOD, 0)
 };
 
-[1,2,5].forEach(n => {
-  console.log(countVowelPermutation(n))
-})
+module.exports = countVowelPermutation
