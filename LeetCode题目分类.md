@@ -78,6 +78,12 @@ K个数之和为sum的问题。其中，K是确定的。
 
 ## 二分查找进阶
 
+细节：
+
+- [双周赛11场，第4题：分享巧克力](https://leetcode-cn.com/contest/biweekly-contest-11/problems/divide-chocolate/)
+
+题型：
+
 - [1095. 山脉数组中查找目标值](https://leetcode-cn.com/problems/find-in-mountain-array/)
 - [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
 - [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
@@ -135,18 +141,15 @@ if (C < K) {
 
 ## 【滑动窗口】解决【子串问题】
 
-技术点：
-
-- 滑动窗口：遍历出子串，右指针探索、左指针优化，O(N)。
-- HashMap：用以统计字符，因为支持O(1)的增删操作，与滑动窗口的遍历方式配合得很好。一般需要设置一个变量来代替HashMap的遍历，将该过程从O(N)优化到O(1)。
-
-总体只需要O(N)时间。
-
-题目：
-
-- 76（模板题）
-- 3、438、159
-- 424、1004
+- 适用条件：寻找子串问题，并且“扩展”和“缩减”在满足条件时只能选择其一。
+- 细节
+  - 滑动窗口：遍历出子串，右指针探索、左指针优化，O(N)。
+  - HashMap：用以统计字符，因为支持O(1)的增删操作，与滑动窗口的遍历方式配合得很好。一般需要设置一个变量来代替HashMap的遍历，将该过程从O(N)优化到O(1)。
+- 时间：一般为O(N)，如果不是则想方设法优化为O(N)
+- 题目
+  - 76（模板题）
+  - 3、438、159
+  - 424、1004
 
 ## backtrack问题
 
@@ -166,6 +169,30 @@ backtrack专指“状态空间搜索”问题中的DFS解法。LeetCode上已经
 
 - [39. 组合总和(无限)](https://leetcode-cn.com/problems/combination-sum/)
 - [40. 组合总和(有限)](https://leetcode-cn.com/problems/combination-sum-ii/)
+
+## 动态规划
+
+动态规划常见于多策略下的最值问题。思路是这样的：
+
+1. 想出回溯法（暴力法），结果时间复杂度太高而TLE
+1. Top-down DP：发现重叠子问题，用Map缓存子问题的结果，变成动态规划。能够AC但是时效不是太好
+1. Bottom-up DP：继续优化时间与空间，沿用Top-down的状态转移，设计dp数组以及循环方式
+
+DP的两种方式的比较：
+
+- Top-down（递归 + 记忆化）
+  - 更好理解，通常先思考出来。
+  - 想好边界条件、推导式即可。
+  - 缺点：虽然复杂度一样，但系统栈花销导致它通常比Bottom-up慢一点。甚至当n较大时，栈溢出。
+- Bottom-up（迭代）
+  - 通常是后想出来，作为对Top-down的进一步优化（时效、空间压缩）。空间压缩方式：滚动数组/逆序更新。
+  - 除了边界条件、推导式，还要想怎么循环（几重循环、循环的方向）。
+  - 缺点：时效通常较好，但是当有效子问题较少时会比Top-down还慢，因为前者会计算所有子问题，不管它是否有效；后者只会选择有效路径走。
+  - 通常用数组表示dp状态，所以要注意下标不能为负数的限制，即表示带负数的状态时要另辟蹊径。
+
+题目：
+
+- [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/)
 
 ## 背包问题（Knapsack）
 
@@ -196,7 +223,14 @@ backtrack专指“状态空间搜索”问题中的DFS解法。LeetCode上已经
 - [496. 数组中的 NextGreater](https://leetcode-cn.com/problems/next-greater-element-i/)
 - [503. 循环数组中的 NextGreater](https://leetcode-cn.com/problems/next-greater-element-ii/)
 
-## 悬而未决
+## 经典问题，特定解法
+
+- 最长公共子串LCS
+- 最长公共子序列LCS
+- 最长回文子串LPS
+- 最长回文子序列LPS
+
+## 悬而未决（个人）
 
 - [118. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
   - 朴素解法虽然比较慢，但有扩展性(3段 => K段)
