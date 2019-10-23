@@ -19,3 +19,7 @@
 - 为了维护收益升序，只有当`i`的收益（`dp[j] + profit[i]`）比dp尾项（最大值）更大时，才把它加入`dp`数组中
 
 时间复杂度：O(NlogN + NlogN) = O(NlogN)
+
+## 参考
+
+- [GeeksForGeeks: Weighted Job Scheduling in O(n Log n) time](https://www.geeksforgeeks.org/weighted-job-scheduling-log-n-time/)

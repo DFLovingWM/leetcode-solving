@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./650-2-keys-keyboard/test');
+require('./740-delete-and-earn/test');

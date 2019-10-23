@@ -13,12 +13,12 @@ function longestPalindrome (text) {
     })
   })
 
-  // 奇数串初始化
+  // 初始化：1个字符肯定回文
   for (let i = 0; i < n; ++i) {
     dp[i][i] = true
   }
 
-  // 偶数串初始化
+  // 初始化：2个字符，需要判断下
   for (let i = 1; i < n; ++i) {
     if (text[i - 1] === text[i]) {
       dp[i - 1][i] = true
