@@ -1,6 +1,5 @@
 /**
- * [TLE]
- * 看作`tree`，进行`DFS`
+ * 回溯(TLE)
  * `O(2^N)`，N稍微大点就超时，因此不可行
  */
 let stop, result
@@ -24,9 +23,4 @@ function dfs (arr, i) {
   }
 }
 
-[
-  [2,3,1,1,4],
-  [3,2,1,0,4],
-].forEach(arr => {
-  console.log(canJump(arr))
-})
+module.exports = canJump

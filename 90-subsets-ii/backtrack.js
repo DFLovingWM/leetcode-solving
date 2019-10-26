@@ -1,38 +1,24 @@
 /**
- * 回溯 + 重复剪枝（基于排序）
- * 时间：92ms
- * 空间：36MB
+ * 回溯
  */
-var subsetsWithDup = function(nums) {
-  nums = nums.slice().sort((a, b) => a - b) // 非降序排序（为了让重复元素堆在一起，好去重）
+var subsetsWithDup = function (nums) {
+  nums = nums.slice().sort((a, b) => a - b) // 排序以让重复元素相邻
+  const res = []
 
-  const results = []
-  backtrack(nums, [], results)
-  return results
+  function backtrack (start, acc) {
+    res.push(acc.slice())
+
+    for (let i = start; i < nums.length; ++i) {
+      if (i === start || nums[i] !== nums[i - 1]) { // 去重（重复元素）
+        acc.push(nums[i])
+        backtrack(i + 1, acc) // 去重（禁止向前访问）
+        acc.pop()
+      }
+    }
+  }
+
+  backtrack(0, [])
+  return res
 };
 
-function backtrack (nums, tmp, results) {
-  results.push(tmp)
-
-  for (let i = 0; i < nums.length; ++i) {
-    // 剪枝：去重
-    // 如果等于前一个元素，因为前一个元素已经遍历过，所以这个不用再遍历
-    if (i > 0 && nums[i] === nums[i - 1]) {
-      continue
-    }
-
-    backtrack(
-      nums.slice(i + 1),
-      tmp.concat(nums[i]),
-      results
-    )
-  }
-}
-
-[
-  [1,2,3],
-  [3,2,1],
-  [1,1,1]
-].forEach(arr => {
-  console.log(subsetsWithDup(arr))
-})
+module.exports = subsetsWithDup

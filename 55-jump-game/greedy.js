@@ -1,14 +1,16 @@
 /**
- * 贪心：从终点(可达)开始往前扫描，类似`bottom-up DP`
- * `O(N)`, 76ms
+ * 贪心：逆序扫描，维护当前可达的最小位置
  */
-function canJump (arr) {
-  let lastCanReach = arr.length - 1
-  for (let i = arr.length - 1; i >= 0; --i) {
-    if (i + arr[i] >= lastCanReach) {
-      lastCanReach = i
-      if (lastCanReach === 0) return true
+function canJump (nums) {
+  const n = nums.length
+  let nearest = n - 1 // 初始值：终点（必定可达）
+
+  for (let i = n - 2; i >= 0; --i) {
+    if (i + nums[i] >= nearest) {
+      nearest = i
     }
   }
-  return false
+  return nearest === 0
 }
+
+module.exports = canJump

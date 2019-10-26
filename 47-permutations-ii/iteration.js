@@ -1,31 +1,29 @@
 /**
- * 迭代法：
- * - 用Set
- * - 不用Set，很6
+ * 循环法：维护结果集
  * 
- * 时间：124ms
- * 空间：37.6MB
+ * 时间：88ms
  */
-var permuteUnique = function(nums) {
-  let curs = [[]]
-  for (const num of nums) {
-    let nexts = []
-    for (const cur of curs) {
-      for (let i = 0; i <= cur.length; ++i) { // `num`可插入的位置
-        if (i > 0 && num === cur[i - 1]) {
-          // 重点
-          break
-        }
-        nexts.push(cur.slice(0, i).concat(num).concat(cur.slice(i)))
+var permuteUnique = function (nums) {
+  let curr = [[]]
+
+  for (const n of nums) { // 挑选数字`n`
+    const next = []
+
+    for (const tmp of curr) { // 遍历已有排列`tmp`
+      for (let i = 0; i <= tmp.length; ++i) { // 遍历`n`可以插入`tmp`中的位置
+        next.push([...tmp.slice(0, i), n, ...tmp.slice(i)])
+
+        // 关键：避免重复！
+        // 遇到与n相同的数字，之后的位置就放弃（以免与之后的排列重复）
+        // 原理其实不知道怎么解释（@todo）
+        if (i < tmp.length && tmp[i] === n) break
       }
     }
-    curs = nexts
+
+    curr = next
   }
-  return curs
+
+  return curr
 };
 
-[
-  [1,1,2]
-].forEach(arr => {
-  console.log(permuteUnique(arr))
-})
+module.exports = permuteUnique

@@ -1,30 +1,27 @@
 # LeetCode题目分类
 
-分类的根据
+分类的根据：
 
-- 根据题型来分
-- 根据思路/解法/算法来分
-- 根据数据结构来分
-
-LeetCode网站已经实现了这种多维度的分类。在这里我们主要根据题型来分。
+- 题型（挖掘通用套路）
+  - Xxx问题
+- 解法（针对性的专题训练）
+  - 数据结构
+  - 算法
 
 ## 未分类
 
 Lowest Common Ancestor: 235, 236
 
-## 前缀和的应用
-
-- 560：典型，子数组的和
-- 974：稍微变形，和变为整除
-- 437：二叉树中，子路径的和
-
 ## K-Sum问题
 
-K个数之和为sum的问题。其中，K是确定的。
+K个数之和为sum的问题。其中，K是确定的（不一定是连续的K个数）。
 
-思路：
+通用解法：
 
-通用解法：排序 + 回溯剪枝 + 双指针(等值、非等值搜索)/Hash(等值搜索)
+1. 排序
+1. 回溯 + 剪枝
+1. 叶子结点为2-Sum问题：双指针/Hash
+
 时间复杂度：O(N ^ (K - 1))
 
 题目：
@@ -34,14 +31,6 @@ K个数之和为sum的问题。其中，K是确定的。
 - [18. 四数之和](https://leetcode-cn.com/problems/4sum/)
 - [216. 组合总和3(其实是K-sum问题)](https://leetcode-cn.com/problems/combination-sum-iii/submissions/)
 - [259. 三数之和小于K](https://leetcode-cn.com/problems/3sum-smaller/)
-
-题目：
-
-- sum问题：bitset/母函数/背包
-- Sub-array sum/product问题：
-  - 等于K：即相等搜索，prefix sum + O(1)查找。
-    - 基础：[560](https://leetcode.com/problems/subarray-sum-equals-k/)
-    - 二叉树上的prefix sum：[437. Path Sum III](https://leetcode.com/problems/path-sum-iii/)
 
 ## 子数组问题
 
@@ -53,12 +42,13 @@ K个数之和为sum的问题。其中，K是确定的。
 
 - 前缀和，形式有：
   - 哈希（Map/Set）：适用于等值搜索，O(N)时间
-  - 二分查找（数组）：适用于前缀和数组单调的范围搜索。复杂度为O(NlogN)。当不单调的时候，就用不上了（862）。
+  - 二分查找（数组）：适用于单调数组的范围搜索。复杂度为O(NlogN)。当不单调的时候，就用不上了（862）。
 - 滑动窗口：适用于范围搜索，O(N)
 
 题目：
 
 - [560. 和为K的子数组，求个数](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
+- [437. Path Sum III](https://leetcode.com/problems/path-sum-iii/)
 - [325. 和为K的子数组，求最长长度](https://leetcode-cn.com/problems/maximum-size-subarray-sum-equals-k/)
 - [523. 和为nK的连续子数组，求是否存在](https://leetcode-cn.com/problems/continuous-subarray-sum/submissions/)
 - [713. 积小于K的子数组，求个数](https://leetcode-cn.com/problems/subarray-product-less-than-k/)
@@ -76,19 +66,28 @@ K个数之和为sum的问题。其中，K是确定的。
 - [26. 删除重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
 - [80. 减少重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array-ii/)
 
-## 二分查找进阶
+## 二分查找
 
 细节：
 
 - [双周赛11场，第4题：分享巧克力](https://leetcode-cn.com/contest/biweekly-contest-11/problems/divide-chocolate/)
 
-题型：
+进阶题型：
 
 - [1095. 山脉数组中查找目标值](https://leetcode-cn.com/problems/find-in-mountain-array/)
 - [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
 - [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 - [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
 - [81. 搜索旋转排序数组2（有重复元素）](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/submissions/)
+
+终极题型（难以想到用二分，注意题目给的限制）：在限制范围内二分枚举可能的答案，问题从“求”转化为“证实存在”，通过逆推证实。
+
+- [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)
+- [1231. 分享巧克力](https://leetcode-cn.com/problems/divide-chocolate/)
+- [1201. 丑数 III](https://leetcode-cn.com/problems/ugly-number-iii/)
+- [378. 有序矩阵中第K小的元素](https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/)
+- [719. 找出第 k 小的距离对](https://leetcode-cn.com/problems/find-k-th-smallest-pair-distance/)
+
 
 ## Top K问题
 
@@ -151,26 +150,34 @@ if (C < K) {
   - 3、438、159
   - 424、1004
 
-## backtrack问题
+## 回溯算法
 
-backtrack专指“状态空间搜索”问题中的DFS解法。LeetCode上已经有人整理了[backtrack通用解法的思路以及使用场景](https://leetcode.com/problems/subsets/discuss/27281/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning))。
+Backtrack专指“状态空间搜索”问题中的DFS解法。LeetCode上已经有人整理了[backtrack通用解法的思路以及使用场景](https://leetcode.com/problems/subsets/discuss/27281/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning))。
 
-另外，它一般对应有“迭代（BFS）”解法，思路一般都类似，在此暂不讨论。
+求所有可能性（不是数量），只能用回溯算法来穷举。
+
+编程细节：
+
+- 处理答案的方式
+  - 前序：设一个全局变量`res`存放答案，将潜在答案`acc`放在递归函数的入参处（常用）
+  - 后序：将潜在答案`acc`作为递归函数的出参返回，然后由上层整合答案`res`（难理解但更秀）
+- 如果候选答案`acc`是引用类型（比如数组），则需要在某个时机将它拷贝：
+  - 递归时传一个copy
+  - 加入结果集时再copy，则递归后需要手动回溯
 
 题目：
 
-- [46. 全排列(无重复元素)](https://leetcode-cn.com/problems/permutations/)
-- [47. 全排列(有重复元素)](https://leetcode-cn.com/problems/permutations-ii/)
+- [78. 序列(无重复元素)的子集](https://leetcode-cn.com/problems/subsets/solution/hui-su-suan-fa-by-powcai-5/)
+- [90. 序列(有重复元素)的子集](https://leetcode-cn.com/problems/subsets-ii/submissions/)
+- [46. 序列(无重复元素)的全排列](https://leetcode-cn.com/problems/permutations/)
+- [47. 序列(有重复元素)全排列](https://leetcode-cn.com/problems/permutations-ii/)
 - [31. 下一个排列(C++ API)](https://leetcode-cn.com/problems/next-permutation/)
 - [556. 下一个更大元素(排列)](https://leetcode-cn.com/problems/next-greater-element-iii/)
-
-- [78. 集合(无重复元素)的子集](https://leetcode-cn.com/problems/subsets/solution/hui-su-suan-fa-by-powcai-5/)
-- [90. 序列(有重复元素)的子集](https://leetcode-cn.com/problems/subsets-ii/submissions/)
 
 - [39. 组合总和(无限)](https://leetcode-cn.com/problems/combination-sum/)
 - [40. 组合总和(有限)](https://leetcode-cn.com/problems/combination-sum-ii/)
 
-## 动态规划
+## 动态规划（重点）
 
 动态规划常见于多策略下的最值问题。思路是这样的：
 
@@ -204,9 +211,9 @@ DP的两种方式的比较：
   - 518
 - 多重背包
 
-## 区间问题
+## 区间问题（套路很重要）
 
-思路：排序。
+思路：排序。具体是按照start还是end，取决于问题场景。
 
 - [56. 合并区间](https://leetcode-cn.com/problems/merge-intervals/submissions/)
 
@@ -223,7 +230,7 @@ DP的两种方式的比较：
 - [496. 数组中的 NextGreater](https://leetcode-cn.com/problems/next-greater-element-i/)
 - [503. 循环数组中的 NextGreater](https://leetcode-cn.com/problems/next-greater-element-ii/)
 
-## 经典问题，特定解法
+## 最长Xxx串问题
 
 - 最长公共子串LCS
 - 最长公共子序列LCS
@@ -234,11 +241,11 @@ DP的两种方式的比较：
 
 - [118. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
   - 朴素解法虽然比较慢，但有扩展性(3段 => K段)
-- [437: Path Sum III](https://leetcode.com/problems/path-sum-iii/discuss/91889/Simple-Java-DFS)该解法(很简洁但没看出原理)。
 - [336：Palindrome Pairs](https://leetcode.com/problems/palindrome-pairs/discuss/79195/O(n-*-k2)-java-solution-with-Trie-structure)，Trie解法。
-- [22. Generate Parentheses](https://leetcode.com/problems/generate-parentheses/discuss/10127/An-iterative-method.)DP解法。
 - [1008](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC++Python-O(N))：存在O(HlogN)乃至O(N)解法？时间复杂度分析是否错了？
 
-## 666的解法
+## 全局搜索标签
 
-- 55：贪心解法，将`bottom-up DP`优化成线性复杂度
+- 重要题目
+- 模板题
+- 好题

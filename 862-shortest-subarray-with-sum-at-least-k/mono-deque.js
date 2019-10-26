@@ -11,6 +11,7 @@ var shortestSubarray = function(arr, K) {
 
   const deque = new PsuDeque() // 双端队列
   let res = arr.length + 1 // 结果
+
   for (let i = 0; i <= arr.length; ++i) {
     let x = prefix[i]
     while (!deque.empty() && x <= prefix[deque.getLast()]) {

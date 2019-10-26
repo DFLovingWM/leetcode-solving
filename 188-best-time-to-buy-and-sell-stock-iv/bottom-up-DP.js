@@ -1,12 +1,17 @@
 /**
  * Bottom-up DP
- * `dp[n][0~2][0~1]`表示前n天、最多进行了多少次交易、是否持有的最大收益
+ * `dp[n][k][0~1]`表示前n天、最多进行了k次交易、是否持有的最大收益
  * 
- * 时间：O(N), 88ms
+ * 本题`K`可能很大，需要分类讨论
+ * 
+ * 时间：O(NK), 100ms
  */
-var maxProfit = function (prices) {
+var maxProfit = function (K, prices) {
+  if (K >= Math.floor(prices.length / 2)) { // 相当于`K=无限`
+    return greedy(prices)
+  }
+
   const N = prices.length
-  const K = 2
   const dp = new Array(N + 1).fill(0).map(() => {
     return new Array(K + 1).fill(0).map(() => {
       return new Array(2).fill(-Infinity)
@@ -35,7 +40,17 @@ var maxProfit = function (prices) {
     }
   }
 
-  return dp[N][2][0]
+  return dp[N][K][0]
 };
+
+function greedy (prices) {
+  let res = 0
+  for (let i = 1; i < prices.length; ++i) {
+    if (prices[i] > prices[i - 1]) {
+      res += prices[i] - prices[i - 1]
+    }
+  }
+  return res
+}
 
 module.exports = maxProfit

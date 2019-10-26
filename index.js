@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./740-delete-and-earn/test');
+require('./745-prefix-and-suffix-search/test');

@@ -19,3 +19,7 @@ even[i] = odd[greater[i]]
 ## 参考
 
 [lee215: DP idea, Using TreeMap or Stack](https://leetcode.com/problems/odd-even-jump/discuss/217981/JavaC%2B%2BPython-DP-idea-Using-TreeMap-or-Stack)。
+
+## 反思总结
+
+从左往右跳，题干类似[55. 跳跃游戏](https://leetcode-cn.com/problems/jump-game)。思路也类似，使用DP。

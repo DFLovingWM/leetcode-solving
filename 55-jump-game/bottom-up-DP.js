@@ -1,26 +1,25 @@
 /**
- * 从后往前，耗时一样
+ * Bottom-up DP：因为都是向右边跳，所以可以用逆向思维，从终点开始逆推每个位置是否可达
  * 
- * Bottom-up DP
+ * 时间：O(N^2), 420ms
  */
-var canJump = function(nums) {
-  const { length } = nums
-  let canReach = Array.from({ length }, () => false)
+var canJump = function (nums) {
+  const n = nums.length
+  const canReach = new Array(n).fill(false) // canReach[i]表示位置i是否能跳到终点
+  canReach[n - 1] = true
 
-  // 从终点开始
-  canReach[length - 1] = true
-  for (let i = length - 2; i >= 0; --i) {
-    let [start, end] = [i + 1, Math.min(i + nums[i], length - 1)]
-    // 只要后面的任意1个位置可达，那此位置也可达(可以直接break了)
-    canReach[i] = canReach.slice(start, end + 1).some(c => c)
+  for (let i = n - 2; i >= 0; --i) {
+    const farest = Math.min(n, i + nums[i] + 1) // 能跳到的最远下标（开区间）
+
+    for (let j = i + 1; j < farest; ++j) {
+      if (canReach[j]) { // 如果j可达，并且i能跳到j，则推出i也是可达的
+        canReach[i] = true
+        break
+      }
+    }
   }
 
   return canReach[0]
 };
 
-[
-  [2,3,1,1,4],
-  [3,2,1,0,4],
-].forEach(arr => {
-  console.log(canJump(arr))
-})
+module.exports = canJump
