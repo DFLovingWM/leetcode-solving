@@ -1,7 +1,6 @@
 /**
- * 二分查找：始终遵循【左闭右开】
- * 
- * 时间：O(logX), 80ms
+ * 二分枚举：反推条件
+ * 时间：O(logX)
  */
 var mySqrt = function (x) {
   let left = 0
@@ -21,11 +20,4 @@ var mySqrt = function (x) {
   return left
 };
 
-[
-  4,
-  8,
-  9,
-  2147483647,
-].forEach(n => {
-  console.log(mySqrt(n))
-})
+module.exports = mySqrt

@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./745-prefix-and-suffix-search/test');
+require('./410-split-array-largest-sum/binary-search');

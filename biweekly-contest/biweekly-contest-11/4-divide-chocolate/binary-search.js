@@ -1,15 +1,15 @@
 /**
  * 二分查找：在10^9范围内二分枚举最小甜度，然后看能否分成(K+1)块
- * 【左开右闭】
+ * 取右中位数
  * 
  * 时间：O(NlogX), 80ms
  */
 var maximizeSweetness = function (sweetness, K) {
-  let left = 1
-  let right = Math.pow(10, 9)
+  let left = 0 // 左开
+  let right = Math.pow(10, 9) // 右闭
 
   while (left < right) {
-    const mid = Math.floor((left + right + 1) / 2) // （2）向上取整
+    const mid = left + Math.floor((right - left + 1) / 2) // （2）右中位数
 
     if (canDivide(sweetness, K + 1, mid)) { // （1）如果mid作为最小甜度能满足，就尝试寻找比mid更大的
       left = mid // left扩大前，记录当前能满足的mid值
