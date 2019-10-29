@@ -1,14 +1,9 @@
 /**
- * 归并排序
- * 
- * 时间：O(NlogN), 112ms
+ * 归并排序，每次数个数
  */
-var countSmaller = function (nums) {
-  nums = nums.slice().map((n, i) => ({
-    value: n,
-    index: i
-  }))
-  const res = new Array(nums.length).fill(0)
+var reversePairs = function (nums) {
+  nums = nums.slice()
+  let res = 0
 
   // 归并排序
   function mergeSort (left, right) {
@@ -22,15 +17,15 @@ var countSmaller = function (nums) {
     // 数个数
     let r = mid
     for (let l = left; l < mid; ++l) {
-      while (r < right && A[l - left].value > B[r - mid].value) ++r
-      res[A[l - left].index] += r - mid
+      while (r < right && A[l - left] > 2 * B[r - mid]) ++r
+      res += r - mid
     }
 
     // 合并有序数组
     const C = []
     let a = 0, b = 0
     while (a < A.length && b < B.length) {
-      if (A[a].value < B[b].value) {
+      if (A[a] < B[b]) {
         C.push(A[a++])
       } else {
         C.push(B[b++])
@@ -46,4 +41,4 @@ var countSmaller = function (nums) {
   return res
 };
 
-module.exports = countSmaller
+module.exports = reversePairs

@@ -1,5 +1,5 @@
 /**
- * 循环法
+ * 循环
  */
 var reverseKGroup = function (head, K) {
   let n = 0, p = head
