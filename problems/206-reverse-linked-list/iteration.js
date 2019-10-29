@@ -21,3 +21,5 @@ var reverseList = function (head) {
 
   return head
 };
+
+module.exports = reverseList

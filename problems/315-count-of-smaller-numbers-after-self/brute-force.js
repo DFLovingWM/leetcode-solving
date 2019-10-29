@@ -1,5 +1,5 @@
 /**
- * 暴力，O(N2)，耗时668ms
+ * 暴力，O(N^2)，耗时668ms
  */
 var countSmaller = function(nums) {
   const result = []
@@ -15,9 +15,4 @@ var countSmaller = function(nums) {
   return result
 };
 
-[
-  [5,2,6,1],
-  [-1, -1],
-].forEach(arr => {
-  console.log(countSmaller(arr))
-})
+module.exports = countSmaller

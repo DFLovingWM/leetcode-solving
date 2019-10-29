@@ -39,7 +39,7 @@ function check (nums, maxSum, K) {
   }
   if (acc > 0) ++count // 如果有剩余，也当作一份
 
-  return count <= K // 看是否
+  return count <= K // 看份数是否在K之内
 }
 
 [

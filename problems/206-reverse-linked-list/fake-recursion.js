@@ -17,3 +17,5 @@ function helper (head, tail) {
     return head
   }
 }
+
+module.exports = reverseList

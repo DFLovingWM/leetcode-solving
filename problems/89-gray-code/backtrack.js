@@ -1,7 +1,6 @@
 /**
  * 回溯
- * 时间：O(2^N), 136ms
- * 空间：O(2^N), 37.5MB
+ * 时间：O(2^N), 88ms
  */
 var grayCode = function(n) {
   const results = []
@@ -30,6 +29,4 @@ function toNumber (binaryStr) {
   return result
 }
 
-[2, 0].forEach(n => {
-  console.log(grayCode(n))
-})
+module.exports = grayCode

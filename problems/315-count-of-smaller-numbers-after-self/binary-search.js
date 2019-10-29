@@ -26,9 +26,4 @@ function bisectLeft (arr, left, right, target) {
   return left
 }
 
-[
-  [5,2,6,1],
-  [-1, -1],
-].forEach(arr => {
-  console.log(countSmaller(arr))
-})
+module.exports = countSmaller

@@ -3,40 +3,32 @@ function ListNode (val) {
   this.next = null
 }
 
-function from (arr) {
-  if (!arr || arr.length === 0) return null
-
-  let nodes = arr.map(val => new ListNode(val))
-  nodes.reduce((curNode, nextNode) => {
-    curNode.next = nextNode
-    return nextNode
-  })
-  return nodes[0]
+function n (val, next = null) {
+  const res = new ListNode(val)
+  res.next = next
+  return res
 }
 
-function print (listNode, delim = '->') {
-  let values = []
-  let p = listNode
-  while (p) {
-    values.push(p.val)
-    p = p.next
+function print (listNode) {
+  const res = []
+  while (listNode) {
+    res.push(listNode.val)
+    listNode = listNode.next
   }
-  console.log(values.join(delim))
+  console.log(res)
 }
 
-function length (listNode) {
-  let ret = 0
-  let p = listNode
-  while (p) {
-    ++ret
-    p = p.next
-  }
-  return ret
+function deserialize (arr) {
+  const dummy = n()
+  arr.reduce((node, val) => {
+    node.next = n(val)
+    return node.next
+  }, dummy)
+  return dummy.next
 }
 
 module.exports = {
-  ListNode,
-  from,
+  n,
   print,
-  length,
+  deserialize
 }

@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./410-split-array-largest-sum/binary-search');
+require('./problems/600-non-negative-integers-without-consecutive-ones/test');

@@ -10,8 +10,8 @@ function solve2 (data, volume) {
   for (let i = 1; i <= data.length; ++i) { // 遍历每一个物品
     const [cost, value] = data[i - 1]
 
-    for (let j = 0; j <= volume; ++j) {
-      if (j < cost) { // 放不下
+    for (let j = 0; j <= volume; ++j) { // 遍历当前容量
+      if (j < cost) { // 放了cost后必定有`j>cost`，所以`j<cost`表示不可能放得下
         f[i][j] = f[i - 1][j]
       } else { // 如果能放下
         f[i][j] = Math.max(

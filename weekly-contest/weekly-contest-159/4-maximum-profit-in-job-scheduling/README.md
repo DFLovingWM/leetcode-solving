@@ -20,6 +20,14 @@
 
 时间复杂度：O(NlogN + NlogN) = O(NlogN)
 
+## 反思总结
+
+01背包问题的模板题/变形题。（@todo 待总结）
+
+## 相似题目
+
+- 周赛160，第3题
+
 ## 参考
 
 - [GeeksForGeeks: Weighted Job Scheduling in O(n Log n) time](https://www.geeksforgeeks.org/weighted-job-scheduling-log-n-time/)
