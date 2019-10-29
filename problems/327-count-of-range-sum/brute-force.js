@@ -1,5 +1,7 @@
 /**
- * 暴力O(N2)，耗时272ms
+ * 暴力
+ * 
+ * 时间：$O(N^{2})$，272ms
  */
 var countRangeSum = function(nums, lower, upper) {
   let count = 0
@@ -15,8 +17,4 @@ var countRangeSum = function(nums, lower, upper) {
   return count
 };
 
-[
-  [[-2,5,-1], -2, 2],
-].forEach(input => {
-  console.log(countRangeSum(...input))
-})
+module.exports = countRangeSum
