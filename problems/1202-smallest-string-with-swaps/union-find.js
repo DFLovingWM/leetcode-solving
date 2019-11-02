@@ -67,10 +67,4 @@ class UnionFind {
   }
 }
 
-[
-  ['dcab', [[0,3],[1,2]]],
-  ['dcab', [[0,3],[1,2],[0,2]]],
-  ['cba', [[0,1],[1,2]]],
-].forEach(input => {
-  console.log(smallestStringWithSwaps(...input))
-})
+module.exports = smallestStringWithSwaps
