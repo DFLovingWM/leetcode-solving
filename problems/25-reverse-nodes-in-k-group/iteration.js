@@ -1,39 +1,38 @@
 /**
- * 循环
+ * 循环法
  */
-var reverseKGroup = function (head, K) {
-  let n = 0, p = head
-  while (p) {
-    p = p.next
-    ++n
-  }
-
-  let res = head
-  let left = null
-  let right = new ListNode()
-  right.next = head
-  let prevLeft = null, prevRight = null
-
-  for (let i = 0, limit = Math.floor(n / K); i < limit; ++i) {
-    [prevLeft, prevRight, left, right] = [left, right, right.next, right.next]
-    for (let j = 2; j <= K; ++j) {
-      const newNode = right.next
-      right.next = newNode.next
-      newNode.next = left
-      left = newNode
+var reverseKGroup = function(root, K) {
+  let len = 0
+  for (let p = root; p; p = p.next) ++len
+  const round = Math.floor(len / K)
+  
+  let res = root
+  let prevHead = null
+  let prevTail = new ListNode()
+  prevTail.next = root
+  
+  for (let i = 0; i < round; ++i) {
+    // 初始化首结点
+    let [head, tail] = [prevTail.next, prevTail.next]
+    
+    // 迭代
+    for (let j = 1; j < K; ++j) {
+      const newNode = tail.next
+      tail.next = newNode.next
+      newNode.next = head
+      head = newNode
     }
+    
+    // 跟上K个连接
+    prevTail.next = head
     if (i === 0) {
-      res = left
+      res = head
     }
-    prevRight.next = left
+    
+    [prevHead, prevTail] = [head, tail]
   }
-
+  
   return res
 };
-
-function ListNode (val) {
-  this.val = val
-  this.next = null
-}
 
 module.exports = reverseKGroup

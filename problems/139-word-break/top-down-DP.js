@@ -1,26 +1,29 @@
 /**
- * 回溯 + 备忘录
- * 
- * 时间：76ms
+ * Top-down DP
  */
-var wordBreak = function (text, wordDict) {
-  const words = new Set(wordDict)
-  return backtrack(text, 0, words, new Set())
-};
+var wordBreak = function (S, wordDict) {
+  const wordSet = new Set(wordDict)
+  const cache = new Map()
 
-// 递归单元
-function backtrack (text, from, words, cache) {
-  if (from === text.length) return true
-  if (cache.has(from)) return false
+  function helper (from) {
+    if (from === S.length) return true
+    if (cache.has(from)) return cache.get(from)
 
-  for (let end = from + 1; end <= text.length; ++end) {
-    const prefix = text.slice(from, end)
-    if (words.has(prefix) && backtrack(text, end, words, cache)) { // 如果前缀匹配，则继续匹配后面的
-      return true
+    let res = false
+    for (let i = from; i < S.length; ++i) {
+      const s = S.slice(from, i + 1)
+      if (wordSet.has(s)) {
+        if (helper(i + 1)) {
+          res = true
+          break
+        }
+      }
     }
+    cache.set(from, res)
+    return res
   }
-  cache.add(from)
-  return false
-}
+
+  return helper(0)
+};
 
 module.exports = wordBreak

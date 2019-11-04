@@ -1,40 +1,23 @@
 /**
- * @param {TreeNode} root
- * @return {number[]}
+ * 层次遍历
  */
-function rightSideView (root) {
-  if (!root) return []
-
-  let queue = [],
-      result = []
-  const ROOT_LEVEL = 0
-
-  let last = new LeveledNode(root, ROOT_LEVEL)
-  queue.push(last)
-
-  while (queue.length > 0) {
-    let curr = queue.shift()
-    if (curr.level !== last.level) {
-      result.push(last.node.val)
+var rightSideView = function(root) {
+  let res = []
+  if (!root) return res
+  
+  let currs = [root]
+  while (currs.length) {
+    res.push(currs[currs.length - 1].val)
+    const nexts = []
+    for (const curr of currs) {
+      if (curr.left) {
+        nexts.push(curr.left)
+      }
+      if (curr.right) {
+        nexts.push(curr.right)
+      }
     }
-    last = curr
-
-    const { node } = curr
-
-    if (node.left) {
-      queue.push(new LeveledNode(node.left, last.level + 1))
-    }
-    
-    if (node.right) {
-      queue.push(new LeveledNode(node.right, last.level + 1))
-    }
+    currs = nexts
   }
-  result.push(last.node.val)
-
-  return result
-}
-
-function LeveledNode (node, level) {
-  this.node = node
-  this.level = level
-}
+  return res
+};

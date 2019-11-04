@@ -1,0 +1,6 @@
+/**
+ * 
+ */
+var minCameraCover = function (root) {
+
+};

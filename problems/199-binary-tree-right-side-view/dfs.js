@@ -1,6 +1,5 @@
 /**
- * @param {TreeNode} root
- * @return {number[]}
+ * DFS
  */
 function rightSideView (root) {
   const result = []
