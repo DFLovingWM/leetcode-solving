@@ -18,6 +18,15 @@ function print (listNode) {
   console.log(res)
 }
 
+function serialize (listNode) {
+  const res = []
+  while (listNode) {
+    res.push(listNode.val)
+    listNode = listNode.next
+  }
+  return res
+}
+
 function deserialize (arr) {
   const dummy = n()
   arr.reduce((node, val) => {
@@ -30,5 +39,6 @@ function deserialize (arr) {
 module.exports = {
   n,
   print,
+  serialize,
   deserialize
 }
