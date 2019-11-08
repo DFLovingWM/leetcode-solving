@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./problems/206-reverse-linked-list/test')
+require('./problems/708-insert-into-a-cyclic-sorted-list/test')
