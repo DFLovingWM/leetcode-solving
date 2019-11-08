@@ -4,20 +4,21 @@
  * 时间：O(N)
  * 空间：O(N)
  */
+let res
+
 function reverseList (head) {
-  let res = null
-
-  function dfs (prev, curr) {
-    if (!curr) return
-
-    const next = curr.next
-    curr.next = prev
-    if (!next) res = curr
-    dfs(curr, next)
-  }
-
-  if (head) dfs(null, head)
+  res = null
+  preOrder(null, head)
   return res
+}
+
+function preOrder (prev, curr) {
+  if (!curr) return
+
+  const next = curr.next
+  curr.next = prev
+  res = curr
+  preOrder(curr, next)
 }
 
 module.exports = reverseList

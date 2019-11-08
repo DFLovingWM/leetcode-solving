@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./problems/86-partition-list/test')
+require('./problems/206-reverse-linked-list/test')
