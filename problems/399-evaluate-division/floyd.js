@@ -1,6 +1,7 @@
 /**
- * 多源（最短）路径，用Floyd算法
- * 时间：O(N^3), 耗时92ms
+ * 图 + floyd
+ * 
+ * 时间：`O(N^3)`, 耗时92ms
  */
 var calcEquation = function(equations, values, queries) {
   // 1. 将所有出现的变量，映射为下标（结点）

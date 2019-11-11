@@ -1,26 +1,28 @@
 /**
- * 二叉树的前序遍历（@todo 待DEBUG）
+ * 相当于二叉树的前序遍历
  */
-let dummy, p
-
 var flatten = function (head) {
-  dummy = new Node()
-  p = dummy
+  const dummy = new Node()
+  let prev = dummy
+
+  function preOrder (node) {
+    if (!node) return
+
+    prev.next = node
+    const [left, right] = [node.child, node.next] // 相当于左右子树
+    node.child = node.next = null
+    node.prev = prev
+    prev = node
+
+    preOrder(left)
+    preOrder(right)
+  }
+
   preOrder(head)
-  return dummy.next
+
+  // 注意：最后需要删除首结点对dummy结点的指向
+  const res = dummy.next
+  if (res) res.prev = null
+
+  return res
 };
-
-function preOrder (node) {
-  if (!node) return
-
-  p = addNode(p, node.val)
-  preOrder(node.child)
-  preOrder(node.next)
-}
-
-function addNode (p, val) {
-  const newNode = new Node(val)
-  newNode.prev = p
-  p.next = newNode
-  return newNode
-}

@@ -4,7 +4,7 @@ exports.deserialize = function (arr) {
   if (arr.length === 0) return null
 
   let i = 0
-  const root = new TreeNode(arr[i++].val)
+  const root = new TreeNode(arr[i++])
   const queue = new Queue() // 存放待遍历结点
   queue.push(root)
 
@@ -34,10 +34,7 @@ exports.serialize = function (root) {
   let currQueue = [root] // 本层结点
 
   while (currQueue.length > 0) {
-    const vals = currQueue.map(node => node ? node.val : null)
-    if (vals.some(val => val !== null)) {
-      levels.push(vals)
-    }
+    levels.push(currQueue.map(node => node ? node.val : null))
 
     const nextQueue = []
     for (const curr of currQueue) {
@@ -49,7 +46,10 @@ exports.serialize = function (root) {
     currQueue = nextQueue
   }
 
-  return levels.reduce((acc, arr) => acc.concat(arr), [])
+  const res = levels.reduce((acc, arr) => acc.concat(arr), [])
+  // 最后的null不输出
+  while (res[res.length - 1] === null) res.pop()
+  return res
 }
 
 // 二叉树结点

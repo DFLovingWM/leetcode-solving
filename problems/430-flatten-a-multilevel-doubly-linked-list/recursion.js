@@ -1,40 +1,31 @@
 /**
- * 递归（后序遍历）：每次扁平化一层
+ * 递归（类似于链表的后序遍历）
  */
-var flatten = function (head) {
-  if (!head) return null
-  return dfs(head)[0]
-};
-
-function dfs (head) {
-  let [p, q] = [head, null]
+function flatten (head) {
+  let p = head
 
   while (p) {
-    if (p.child) {
-      // 递归
-      const [subHead, subTail] = dfs(p.child)
-      const next = p.next
+    if (p.child) { // 如果有child，则递归
+      let [child, next] = [p.child, p.next]
 
-      // 删除子链表
+      // 递归
+      flatten(child)
+
+      // 处理线段头的连接处
+      child.prev = p
+      p.next = child
       p.child = null
-      // 连接子链表头部
-      subHead.prev = p
-      p.next = subHead
-      // 连接子链表尾部
-      subTail.next = next
-      if (next) next.prev = subTail // 注：next可能是NULL
+
+      // 处理线段尾连接处
+      while (child.next) child = child.next
+      child.next = next
+      if (next) next.prev = child
+
+      p = next
+    } else { // 没有则不处理
+      p = p.next
     }
-    [p, q] = [p.next, p]
   }
 
-  return [head, q]
-}
-
-function Node (val, prev, next, child) {
-  this.val = val
-  this.prev = prev
-  this.next = next
-  this.child = child
-}
-
-module.exports = flatten
+  return head
+};
