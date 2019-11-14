@@ -1,83 +1,31 @@
 /**
- * 单调(递减)队列
- * 时间：O(N), 100ms
+ * 单调队列解法
+ * 
+ * 时间：`O(N)`, 104ms
  */
-var maxSlidingWindow = function(nums, k) {
-  const queue = new MonotonicQueue()
+var maxSlidingWindow = function (nums, K) {
+  const queue = [] // 单调递减队列，队首为max
   const res = []
 
   for (let i = 0; i < nums.length; ++i) {
-    if (i < k - 1) {
-      queue.push(nums[i])
-    } else {
-      queue.push(nums[i])
-      queue.pop(nums[i - k])
-      res.push(queue.max())
+    // 窗口右移，抛弃最左的旧元素
+    if (queue.length > 0 && i - K === queue[0]) {
+      queue.shift()
+    }
+    // 维护单调性
+    while (queue.length > 0 && nums[queue[queue.length - 1]] <= nums[i]) {
+      queue.pop()
+    }
+    // 可以了，增加该下标
+    queue.push(i)
+
+    // 输出最大值
+    if (i + 1 >= K) {
+      res.push(nums[queue[0]])
     }
   }
 
   return res
 };
-
-// 伪双端队列
-class Deque {
-  constructor () {
-    this.arr = []
-  }
-
-  pushBack (x) {
-    this.arr.push(x)
-  }
-
-  popBack () {
-    return this.arr.pop()
-  }
-
-  back () {
-    return this.arr[this.arr.length - 1]
-  }
-
-  // O(N)
-  pushFront (x) {
-    this.arr.unshift(x)
-  }
-
-  // O(N)
-  popFront () {
-    this.arr.shift()
-  }
-
-  front () {
-    return this.arr[0]
-  }
-
-  empty () {
-    return this.arr.length === 0
-  }
-}
-
-// 单调递减的双端队列
-class MonotonicQueue {
-  constructor () {
-    this.deque = new Deque()
-  }
-
-  push (x) {
-    while (!this.deque.empty() && this.deque.back() < x) { // 维护单调递减性
-      this.deque.popBack()
-    }
-    this.deque.pushBack(x)
-  }
-
-  pop (x) {
-    if (!this.deque.empty() && this.deque.front() === x) {
-      this.deque.popFront()
-    }
-  }
-  
-  max () {
-    return this.deque.front() // 头元素最大
-  }
-}
 
 module.exports = maxSlidingWindow

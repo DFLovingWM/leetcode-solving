@@ -1,36 +1,32 @@
 /**
- * Top-down DP：记忆化搜索
+ * Top-down DP
  * 
- * 时间：76ms
- * 空间：36MB
+ * 时间：`O(NV)`, 68ms
  */
-var combinationSum4 = function(nums, target) {
-  const helper = getHelper(nums)
-  return helper(target)
+var combinationSum4 = function (nums, target) {
+  const cache = new Map()
+
+  /**
+   * 递归函数：表示当前为`curr`、最后达到`target`的组合数
+   */
+  function helper (curr) {
+    if (curr === target) { // 相等，终止，累计+1
+      return 1
+    } else if (curr > target) { // 超过了，也要终止
+      return 0
+    }
+
+    if (cache.has(curr)) return cache.get(curr)
+
+    let res = 0
+    for (const num of nums) {
+      res += helper(curr + num) // 逼近target
+    }
+    cache.set(curr, res)
+    return res
+  }
+
+  return helper(0)
 };
 
-// 闭包。让递归函数能够全局访问`nums`和`HashMap`
-function getHelper (nums) {
-  const answers = new Map()
-  answers.set(0, 1)
-
-  return function helper (n) {
-    if (answers.has(n)) return answers.get(n)
-
-    let result = 0
-    for (const num of nums) {
-      if (n - num >= 0) {
-        result += helper(n - num)
-      }
-    }
-    answers.set(n, result)
-    return result
-  }
-}
-
-// [
-//   [[1, 2, 3], 4],
-//   [[4,2,1], 32],
-// ].forEach(input => {
-//   console.log(combinationSum4(...input))
-// })
+module.exports = combinationSum4
