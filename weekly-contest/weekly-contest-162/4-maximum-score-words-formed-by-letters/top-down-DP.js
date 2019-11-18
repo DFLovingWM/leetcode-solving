@@ -1,5 +1,7 @@
 /**
  * 0/1背包问题，Top-down DP
+ * 
+ * 时间：小于`O(2^W)`, 100ms
  */
 var maxScoreWords = function (words, letters, score) {
   words = words.map(word => counter(word)) // 每个单词化为频次
