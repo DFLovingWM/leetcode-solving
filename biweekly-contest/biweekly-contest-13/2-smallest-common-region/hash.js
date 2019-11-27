@@ -11,7 +11,7 @@ var findSmallestRegion = function (regions, x, y) {
     }
   }
 
-  // 记录x的所有祖先
+  // 标记x的路径
   const xx = new Set()
   xx.add(x)
   while (parent.has(x)) {

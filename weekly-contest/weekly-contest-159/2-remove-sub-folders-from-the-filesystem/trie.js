@@ -1,11 +1,9 @@
 /**
  * Trie树
  * 
- * 时间：O(NlogN + NM)，M为文件夹平均层数, 288ms
+ * 时间：O(NM)，M为文件夹平均层数, 252ms
  */
 var removeSubfolders = function (folders) {
-  folders.sort()
-
   const trie = new TrieNode()
   for (const folder of folders) {
     trie.insert(folder)

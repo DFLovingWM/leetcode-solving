@@ -1,0 +1,6 @@
+/**
+ * 
+ */
+var trailingZeroes = function (n) {
+
+};
