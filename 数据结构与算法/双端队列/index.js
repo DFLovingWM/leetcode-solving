@@ -1,29 +1,3 @@
-// 双向链表结点
-function Node (val) {
-  this.val = val
-  this.prev = null
-  this.next = null
-}
-
-// 双向链表结点：插入之前
-function insertBefore (newNode, pivotNode) {
-  const prev = pivotNode.prev
-  const next = pivotNode
-  newNode.prev = prev
-  newNode.next = next
-  prev.next = newNode
-  next.prev = newNode
-}
-
-// 双向链表结点：删除
-function remove (node) {
-  const prev = node.prev
-  const next = node.next
-  prev.next = next
-  next.prev = prev
-}
-
-
 /**
  * 双端队列（Double-ended queue）
  */
@@ -85,6 +59,31 @@ class Deque {
   empty () {
     return this.size() === 0
   }
+}
+
+// 双向链表结点
+function Node (val) {
+  this.val = val
+  this.prev = null
+  this.next = null
+}
+
+// 双向链表结点：插入之前
+function insertBefore (newNode, pivotNode) {
+  const prev = pivotNode.prev
+  const next = pivotNode
+  newNode.prev = prev
+  newNode.next = next
+  prev.next = newNode
+  next.prev = newNode
+}
+
+// 双向链表结点：删除
+function remove (node) {
+  const prev = node.prev
+  const next = node.next
+  prev.next = next
+  next.prev = prev
 }
 
 module.exports = Deque

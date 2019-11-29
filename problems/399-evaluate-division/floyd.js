@@ -1,7 +1,7 @@
 /**
- * 图 + floyd
+ * Floyd
  * 
- * 时间：`O(N^3)`, 耗时92ms
+ * 时间：`O(N^3)`, 92ms
  */
 var calcEquation = function(equations, values, queries) {
   // 1. 将所有出现的变量，映射为下标（结点）
@@ -58,12 +58,4 @@ var calcEquation = function(equations, values, queries) {
   return res
 };
 
-[
-  [
-    [ ["a", "b"], ["b", "c"] ],
-    [2.0, 3.0],
-    [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ]
-  ],
-].forEach(input => {
-  console.log(calcEquation(...input))
-})
+module.exports = calcEquation

@@ -1,7 +1,7 @@
 /**
- * @todo 待将数组改为Deque（自己实现）
+ * 用Deque筛选出有用的前缀和，顺便保持单调(递增)性
  * 
- * 用Deque维护单调的前缀和
+ * 时间：`O(N)`
  */
 var shortestSubarray = function(arr, K) {
   const prefix = [0]
@@ -13,13 +13,13 @@ var shortestSubarray = function(arr, K) {
   let res = arr.length + 1 // 结果
 
   for (let i = 0; i <= arr.length; ++i) {
-    let x = prefix[i]
+    const x = prefix[i]
     while (!deque.empty() && x <= prefix[deque.getLast()]) {
       // 有更优的x（差值更大，距离更近），则替换到结尾（保持单调递增）
       deque.removeLast()
     }
 
-    let y = prefix[i]
+    const y = prefix[i]
     while (!deque.empty() && y - prefix[deque.getFirst()] >= K) {
       // 有满足条件的y，则比较后就可以删除掉x（因为之后的y就算满足了，距离也没这么近）
       res = Math.min(res, i - deque.removeFirst())

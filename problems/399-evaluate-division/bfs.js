@@ -1,7 +1,7 @@
 /**
- * DFS
+ * BFS
  * 
- * 时间：64ms
+ * 时间：48ms
  */
 var calcEquation = function(equations, values, queries) {
 
@@ -32,18 +32,27 @@ var calcEquation = function(equations, values, queries) {
     return [nodeMap, nexts]
   }
   
-  // 深搜
-  function dfs (from, to, visit = new Set()) {
-    if (from === to) return 1
-    
-    visit.add(from)
-    for (const [next, weight] of nexts[from]) {
-      if (!visit.has(next)) {
-        const candidate = weight * dfs(next, to, visit)
-        if (candidate !== 0) return candidate // 只要找到一条通路，就可以返回了
+  // 广搜
+  function bfs (start, end, visit = new Set()) {
+    let currQueue = [[start, 1]]
+
+    while (currQueue.length > 0) {
+      const nextQueue = []
+      for (const [i, acc] of currQueue) {
+        for (const [j, weight] of nexts[i]) {
+          if (!visit.has(j)) {
+            if (j === end) { // 到达终点
+              return acc * weight
+            }
+            visit.add(j)
+            nextQueue.push([j, acc * weight])
+          }
+        }
       }
+      currQueue = nextQueue
     }
-    return 0 // 表示走不到
+
+    return -1 // 无法到达终点
   }
   
   const [nodeMap, nexts] = build()
@@ -54,7 +63,7 @@ var calcEquation = function(equations, values, queries) {
     } else {
       a = nodeMap.get(a)
       b = nodeMap.get(b)
-      res.push(dfs(a, b) || -1) 
+      res.push(bfs(a, b)) 
     }
   }
   return res

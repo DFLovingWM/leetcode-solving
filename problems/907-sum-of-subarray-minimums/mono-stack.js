@@ -8,7 +8,7 @@ const MOD = Math.pow(10, 9) + 7
 var sumSubarrayMins = function (A) {
   const left = findPrevSmaller(A)
   const right = findNextSmaller(A)
-console.log(left, right)
+
   let res = 0
   for (let i = 0; i < A.length; ++i) {
     res += A[i] * (i - left[i]) * (right[i] - i) % MOD

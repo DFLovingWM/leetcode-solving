@@ -1,23 +1,26 @@
 /**
- * Hash: O(N)
+ * 哈希表
+ * 
+ * 时间：`O(N)`, 76ms
  */
 var maxSubArrayLen = function(nums, K) {
-  const getIndex = new Map()
+  const getIndex = new Map([[0, -1]])
   let sum = 0
-  getIndex.set(sum, -1)
-  let maxRange = 0
+  let res = 0
+
   for (let i = 0; i < nums.length; ++i) {
     sum += nums[i]
-    if (getIndex.has(sum - K)) {
-      // 存在同伴，则更新最大范围
-      maxRange = Math.max(maxRange, i - getIndex.get(sum - K))
+
+    if (getIndex.has(sum - K)) { // 存在同伴 => 更新答案
+      res = Math.max(res, i - getIndex.get(sum - K))
     }
-    if (!getIndex.has(sum)) {
-      // 不存在该值时才覆写（保证最远索引、最长长度）
+
+    if (!getIndex.has(sum)) { // 该值首次出现时才记录下标（保证最小索引，即最长长度）
       getIndex.set(sum, i)
     }
   }
-  return maxRange
+
+  return res
 };
 
 [

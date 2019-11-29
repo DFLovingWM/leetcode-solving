@@ -1,28 +1,25 @@
 /**
- * Top-down DP：
- * 注意缓存时的细节（因为node是引用，不能简单地化为字符串，处理起来有点麻烦）
+ * Top-down DP
+ * 
+ * 时间：84ms
  */
 var rob = function (root) {
   const cache = new Map()
-
-  function dfs (node, rob) {
+  
+  function dfs (node) {
     if (!node) return 0
-    if (cache.has(node) && cache.get(node)[Number(rob)]) return cache.get(node)[Number(rob)]
-
-    let res
-    if (rob) { // 偷
-      res = node.val + dfs(node.left, false) + dfs(node.right, false)
-    } else { // 不偷
-      res = Math.max(dfs(node.left, true), dfs(node.left, false)) +
-        Math.max(dfs(node.right, true), dfs(node.right, false))
-    }
-    
-    if (!cache.has(node)) cache.set(node, [])
-    cache.get(node)[Number(rob)] = res
+    if (cache.has(node)) return cache.get(node)
+  
+    // 偷node
+    const yes = node.val +
+      (node.left ? dfs(node.left.left) + dfs(node.left.right) : 0) +
+      (node.right ? dfs(node.right.left) + dfs(node.right.right) : 0)
+    // 不偷node
+    const no = dfs(node.left) + dfs(node.right)
+    const res = Math.max(yes, no)
+    cache.set(node, res)
     return res
   }
 
-  return Math.max(dfs(root, true), dfs(root, false))
+  return dfs(root)
 };
-
-module.exports = rob

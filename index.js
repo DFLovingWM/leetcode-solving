@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./problems/351-android-unlock-patterns/test')
+require('./weekly-contest/weekly-contest-143/2-path-in-zigzag-labelled-binary-tree/naive')
