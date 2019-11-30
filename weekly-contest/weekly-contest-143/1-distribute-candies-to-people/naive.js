@@ -1,7 +1,7 @@
 /**
  * 模拟
  * 
- * 时间：O(NlogM) ~= O(30000)
+ * 时间：O(NlogM) ~= O(30000), 76ms
  */
 var distributeCandies = function (candies, n) {
   const res = new Array(n).fill(0)

@@ -1,18 +1,22 @@
 /**
  * 递归
+ * 
+ * 时间：72ms
  */
 function parseBoolExpr (expression) {
+  // 递归的终止条件/叶子结点
   if (expression === 't') return true
   if (expression === 'f') return false
 
+  // 通过首字符，来判断属于哪种操作
   const firstCh = expression[0]
 
-  if (firstCh === '!') {
+  if (firstCh === '!') { // 对表达式的值取反
     const operants = parseBody(expression)
     return !parseBoolExpr(operants[0])
   }
 
-  if (firstCh === '&') {
+  if (firstCh === '&') { // 短路操作
     for (const subExp of parseBody(expression)) {
       if (!parseBoolExpr(subExp)) {
         return false
@@ -21,7 +25,7 @@ function parseBoolExpr (expression) {
     return true
   }
 
-  if (firstCh === '|') {
+  if (firstCh === '|') { // 短路操作
     for (const subExp of parseBody(expression)) {
       if (parseBoolExpr(subExp)) {
         return true
@@ -31,6 +35,11 @@ function parseBoolExpr (expression) {
   }
 };
 
+/**
+ * 公用方法：解析括号内的内容，拆分为多个操作数
+ * @param {string} expression (独立的)表达式
+ * @returns {string[]} 操作数数组
+ */
 function parseBody (expression) {
   const operants = [] // 返回：操作数数组
   let delta = 0

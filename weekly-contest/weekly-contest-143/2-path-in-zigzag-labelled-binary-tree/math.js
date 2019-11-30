@@ -1,7 +1,7 @@
 /**
  * 不必建树，找规律即可（下标，反转）
  * 
- * 时间：`O(logN)`
+ * 时间：`O(logN)`, 68ms
  */
 var pathInZigZagTree = function (label) {
   const res = []
@@ -26,10 +26,4 @@ function mirror (i) {
   return left + right - i
 }
 
-[
-  14,
-  16,
-  26,
-].forEach(n => {
-  console.log(pathInZigZagTree(n))
-})
+module.exports = pathInZigZagTree

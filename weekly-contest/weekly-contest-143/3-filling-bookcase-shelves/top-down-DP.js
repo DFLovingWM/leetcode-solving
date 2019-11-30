@@ -1,7 +1,7 @@
 /**
  * Top-down DP
  * 
- * 时间：`O(N^2)`
+ * 时间：`O(N^2)`, 328ms
  */
 var minHeightShelves = function (books, shelfWidth) {
   const n = books.length

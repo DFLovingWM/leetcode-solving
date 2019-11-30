@@ -1,5 +1,8 @@
 /**
  * 对每个数字进行非连续的快照存储，二分查找
+ * 
+ * 时间：500ms
+ * 空间：89.7MB
  */
 
 // 数组初始化
@@ -31,7 +34,7 @@ SnapshotArray.prototype.snap = function () {
 // O(logM)
 SnapshotArray.prototype.get = function (index, snapId) {
   const snaps = this.arr[index]
-  const i = bisectRight(snaps, snapId + 0.1, 0, snaps.length) - 1
+  const i = findLessOrEqual(snaps, snapId)
   return snaps[i][1]
 };
 
@@ -45,6 +48,11 @@ function bisectRight (snaps, snapId, left, right) {
     }
   }
   return left
+}
+
+function findLessOrEqual (snaps, snapId) {
+  const i = bisectRight(snaps, snapId, 0, snaps.length)
+  return i - 1
 }
 
 module.exports = SnapshotArray
