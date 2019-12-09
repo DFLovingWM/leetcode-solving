@@ -19,7 +19,8 @@ var longestConsecutive = function (root) {
     if (node.left && node.left.val - 1 === node.val) { // 能连上左边
       curr = Math.max(curr, left + 1)
     }
-    if (node.right && node.right.val - 1 === node.val) { // 能连上右边
+    if (node.right && node.right.val - 
+      1 === node.val) { // 能连上右边
       curr = Math.max(curr, right + 1)
     }
 

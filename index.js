@@ -1,3 +1,3 @@
 // 打开Chrome Debug用的
 
-require('./problems/662-maximum-width-of-binary-tree/test')
+require('./problems/450-delete-node-in-a-bst/test')

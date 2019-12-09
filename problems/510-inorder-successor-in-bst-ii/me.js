@@ -1,14 +1,4 @@
 /**
- * // Definition for a Node.
- * function Node(val,left,right,parent) {
- *    this.val = val;
- *    this.left = left;
- *    this.right = right;
- *    this.parent = parent;
- * };
- */
-
-/**
  * 先找右子树中最左边的，再找第一个往右走的父结点
  * 时间：O(N), 1992ms
  */
