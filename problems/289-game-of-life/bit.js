@@ -17,6 +17,11 @@ const STATE = {
   LIVE_2_LIVE: 3
 }
 
+/**
+ * 模拟
+ * 时间：O(N^2)
+ * 空间：O(1)
+ */
 var gameOfLife = function (board) {
   const [R, C] = [board.length, board[0].length]
 
