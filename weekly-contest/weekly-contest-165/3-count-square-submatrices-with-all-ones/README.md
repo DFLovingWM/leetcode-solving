@@ -1,4 +1,4 @@
-# 5277. 统计全为 1 的正方形子矩阵
+# 1277. 统计全为 1 的正方形子矩阵
 
 ## 思路
 
@@ -30,7 +30,7 @@
   - 空间：`O(N^3)`
 - 思路2：更快的版本
   - 状态表示：`dp[x][y]`表示以`(x,y)`为右下角的全1正方形的最大边长
-  - 状态转移：`dp[x][y] = min( dp[x-1][y], dp[x][y-1], dp[x-1][y-1] )`
+  - 状态转移：`dp[x][y] = 1 + min( dp[x-1][y], dp[x][y-1], dp[x-1][y-1] )`，如果`matrix[x][y] === 1`
   - 时间：`O(N^2)`
   - 空间：`O(N^2)`
 
@@ -40,5 +40,6 @@
 
 好题！感觉可以跟以下题目一起、做一个专题了：
 
+- [1277. 统计全为 1 的正方形子矩阵](https://leetcode-cn.com/problems/count-square-submatrices-with-all-ones/)
 - [1139. 最大的以 1 为边界的正方形](https://leetcode-cn.com/problems/largest-1-bordered-square/)
 - [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)

@@ -13,7 +13,9 @@ var countSquares = function (matrix) {
   for (let i = 1; i <= R; ++i) {
     for (let j = 1; j <= C; ++j) {
       if (matrix[i - 1][j - 1] === 1) {
+        // 关键：这里取三者中的min，能保证其它两者在min的小正方形内都为1
         dp[i][j] = Math.min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]) + 1
+        // 直接累加（不必+1+1+1）
         res += dp[i][j]
       }
     }
