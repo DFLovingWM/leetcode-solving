@@ -19,9 +19,9 @@ public:
         int res = n;
         int maxRight = intervals[0][1];
         for (int i = 1; i < n; ++i) {
-            if (intervals[i][1] > maxRight) {
+            if (intervals[i][1] > maxRight) { // 当前区间没有被包含，即right更大，所以更新right（以更容易包含其它区间）
                 maxRight = intervals[i][1];
-            } else {
+            } else { // 被包含，则减少1个（沿用right）
                 --res;
             }
         }

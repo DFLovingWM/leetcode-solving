@@ -9,9 +9,10 @@
 - 边界：`dp[0]`全为0
 - 目标：最后一行即`dp[n]`中的最小值
 
+其中求`min`的一步可以每次预处理，将算法整体时间从`O(N^3)`降低到`O(N^2)`。
+
 ## 相似题目
 
-类似的DP，但不相同：
+推荐一道类似的题目，朴素解法、优化解法思路几乎一致：
 
 - [265. 粉刷房子 II](https://leetcode-cn.com/problems/paint-house-ii/)
-- [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/)

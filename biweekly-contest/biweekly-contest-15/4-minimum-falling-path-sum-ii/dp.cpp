@@ -1,3 +1,8 @@
+/**
+ * DP：
+ * 时间：O(N^3), 368ms
+ */
+
 #include <vector>
 #include <algorithm>
 using namespace std;
