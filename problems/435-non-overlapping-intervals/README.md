@@ -22,8 +22,6 @@
 
 这是道有代表性的贪心题目，好题！
 
-我很喜欢的一个作者在他的文章[贪心算法之区间调度问题](https://mp.weixin.qq.com/s?__biz=MzU0MDg5OTYyOQ==&mid=2247484319&idx=1&sn=49a9e82e93fe29eb934d9a618be57174&chksm=fb3363ddcc44eacb57d1be9e1e754a6238870a3c4c126a0be133232c4f7458aaffdaec40c0c8&scene=21#wechat_redirect)总结过：
+我很喜欢的一个作者labuladong在他的文章[贪心算法之区间调度问题](https://mp.weixin.qq.com/s?__biz=MzU0MDg5OTYyOQ==&mid=2247484319&idx=1&sn=49a9e82e93fe29eb934d9a618be57174&chksm=fb3363ddcc44eacb57d1be9e1e754a6238870a3c4c126a0be133232c4f7458aaffdaec40c0c8&scene=21#wechat_redirect)总结过：
 
 > 比如说一个算法问题使用暴力解法需要指数级时间，如果能使用动态规划消除重叠子问题，就可以降到多项式级别的时间，如果满足贪心选择性质，那么可以进一步降低时间复杂度，达到线性级别的。
-
-对于这种题目，如果直到能用贪心算法，我们不妨想一想其它不那么优的解法。

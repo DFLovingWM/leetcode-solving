@@ -11,7 +11,7 @@ var maxSubArray = function(nums) {
   for (let i = 0; i < nums.length; ++i) {
     prefix += nums[i]
     res = Math.max(res, prefix - minPrefix)
-    minPrefix = Math.min(minPrefix, prefix)
+    minPrefix = Math.min(minPrefix, prefix) // 记录前面的最小前缀值
   }
 
   return res
