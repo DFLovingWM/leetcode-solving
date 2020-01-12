@@ -5,7 +5,9 @@
  * O(N), 88ms
  */
 function majorityElement (nums) {
-  let count = 1, candidate = nums[0]
+  let count = 1
+  let candidate = nums[0]
+
   for (let i = 1; i < nums.length; ++i) {
     if (nums[i] === candidate) {
       // 相等，该数字的个数+1
@@ -21,6 +23,7 @@ function majorityElement (nums) {
       }
     }
   }
+
   return candidate
 }
 

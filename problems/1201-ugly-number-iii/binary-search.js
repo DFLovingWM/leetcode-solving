@@ -12,14 +12,14 @@ var nthUglyNumber = function (K, a, b, c) {
   while (left < right) {
     const middle = left + (right - left >> 1)
 
-    // 求小于等于middle的丑数（middle前面有多少个丑数）
+    // target前面有K个丑数
     const count = Math.floor(middle / a) + Math.floor(middle / b) + Math.floor(middle / c)
       - Math.floor(middle / lcm(a, b)) - Math.floor(middle / lcm(b, c)) - Math.floor(middle / lcm(a, c))
       + Math.floor(middle / lcm(lcm(a, b), c))
 
-    if (count < K) {
+    if (count < K) { // 如果小于K个，那么target一定在右边
       left = middle + 1
-    } else {
+    } else { // 否则，target一定在左边/或者取该值
       right = middle
     }
   }
