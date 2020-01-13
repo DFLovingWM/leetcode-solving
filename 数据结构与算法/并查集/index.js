@@ -1,8 +1,13 @@
 // 数据结构：并查集
 class UnionFind {
   constructor (length) {
-    this.father = Array.from({ length }, (_, i) => i) // 记录每个结点的“根”
-    this.rank = Array.from({ length }, () => 1) // 秩（用以优化时间）
+    this.father = []
+    this.rank = []
+
+    for (let i = 0; i < length; ++i) {
+      this.father[i] = i;
+      this.rank[i] = 1;
+    }
   }
 
   /**
@@ -34,14 +39,18 @@ class UnionFind {
   union (x, y) {
     let xx = this.getRoot(x)
     let yy = this.getRoot(y)
+
     if (xx === yy) return false
 
     // 建立连通时，让rank更大的作为“根”
-    if (this.rank[xx] < this.rank[yy]) {
-      [xx, yy] = [yy, xx]
+    if (this.rank[xx] <= this.rank[yy]) {
+      this.father[xx] = yy;
+      if (this.rank[xx] == this.rank[yy]) {
+        ++this.rank[yy];
+      }
+    } else {
+      this.father[yy] = xx;
     }
-    this.father[yy] = xx
-    this.rank[xx] += yy
     return true
   }
 
