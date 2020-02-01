@@ -1,3 +1,9 @@
+/**
+ * 暴力遍历
+ * 
+ * 时间：`O(NlogN)`
+ */
+
 class Solution {
 public:
     vector<int> getNoZeroIntegers(int n) {
