@@ -78,7 +78,7 @@ Bottom-up DP（从后往前推导）与BFS（从前往后推导）的联系，�
 
 2、最短路问题
 
-当拓扑序明确、能使用DP时。BFS去重/剪枝所用的`visit/dist`标记数组，相当于DP的`dp`数组。关于最短路问题，详见本目录《最短路径问题》一章。
+最短路问题是搜索问题的特殊化。“搜索”一般指在有限的状态空间中遍历，而最短路问题寻找的是最优的遍历路径，如果用BFS可以保证路径的最短；但如果用DFS，因为无法确保当前路径是最优的，只能对每个状态进行迭代（用数组保存当前最优答案）。所以，当拓扑序明确的情况下，BFS去重/剪枝所用的`visit/dist`标记数组，相当于DP的`dp`数组。关于最短路问题，详见本目录《最短路径问题》一章。
 
 - [1293. 网格中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/)
 - [1320. 二指输入的的最小距离](https://leetcode-cn.com/problems/minimum-distance-to-type-a-word-using-two-fingers/)
