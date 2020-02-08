@@ -44,12 +44,4 @@ function dfs (arr, used, restSum, restCount, targetSum) {
   }
 
   return false
-}
-
-[
-  // [[4, 3, 2, 3, 5, 2, 1], 4],
-  // [[4,5,3,2,5,5,5,1,5,5,5,5,5,5,5,5], 14],
-  [[10,10,10,7,7,7,7,7,7,6,6,6], 3],
-].forEach(input => {
-  console.log(canPartitionKSubsets(...input))
-})
+};

@@ -36,11 +36,4 @@ function dfs (arr, i, buckets) {
     }
   }
   return false
-}
-
-[
-  [[4, 3, 2, 3, 5, 2, 1], 4],
-  [[4,5,3,2,5,5,5,1,5,5,5,5,5,5,5,5], 14],
-].forEach(input => {
-  console.log(canPartitionKSubsets(...input))
-})
+};
