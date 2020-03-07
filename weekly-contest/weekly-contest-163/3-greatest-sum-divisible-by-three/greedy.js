@@ -1,44 +1,33 @@
 /**
- * 数学/分类讨论/贪心
+ * 贪心
  * 
- * 时间：`O(N)`
+ * 时间：O(NlogN), 108ms
+ * 空间：O(N), 40.7MB
  */
 var maxSumDivThree = function (nums) {
-  nums.sort((a, b) => a - b) // 升序排序
-
-  let sum = 0
-  const m1 = [], m2 = []
-
+  let sum = 0;
+  const mod = Array.from({ length: 3 }, () => []);
   for (const num of nums) {
-    sum += num
-    if (num % 3 === 1) {
-      m1.push(num)
-    } else if (num % 3 === 2) {
-      m2.push(num)
-    }
+    sum += num;
+    mod[num % 3].push(num);
   }
+  const residue = sum % 3; // 余数
+  if (residue === 0) return sum;
 
-  if (sum % 3 === 1) { // 余1 => 去掉1个1、或2个2
-    let min = Infinity
-    if (m1.length >= 1) {
-      min = Math.min(min, m1[0])
-    }
-    if (m2.length >= 2) {
-      min = Math.min(min, m2[0] + m2[1])
-    }
-    sum -= min
-  } else if (sum % 3 === 2) { // 余2 => 去掉1个2、或2个1
-    let min = Infinity
-    if (m1.length >= 2) {
-      min = Math.min(min, m1[0] + m1[1])
-    }
-    if (m2.length >= 1) {
-      min = Math.min(min, m2[0])
-    }
-    sum -= min
+  // 降序排序
+  mod[1].sort((a, b) => b - a);
+  mod[2].sort((a, b) => b - a);
+
+  if (residue === 1) { // 余1 => 删去1个m1，或2个m2（取更小者）
+    let min = Infinity;
+    if (mod[1].length >= 1) min = Math.min(min, mod[1].pop());
+    if (mod[2].length >= 2) min = Math.min(min, mod[2].pop() + mod[2].pop());
+    sum -= min;
+  } else { // 余2 => 删除1个m2，或2个m1（取更小者）
+    let min = Infinity;
+    if (mod[2].length >= 1) min = Math.min(min, mod[2].pop());
+    if (mod[1].length >= 2) min = Math.min(min, mod[1].pop() + mod[1].pop());
+    sum -= min;
   }
-
-  return sum
+  return sum;
 };
-
-module.exports = maxSumDivThree
