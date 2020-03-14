@@ -1,5 +1,5 @@
 /**
- * 后序遍历（两次）
+ * 2次后序遍历
  */
 var maxSumBST = function(root) {
   const node2Sum = new Map();

@@ -1,13 +1,18 @@
-# 5337. 每个元音包含偶数次的最长子字符串
+# 1371. 每个元音包含偶数次的最长子字符串
 
 ## 题意
 
+找到最长的子串，使得元音字母的个数都是偶数。
+
 ## 思路
 
-哈希表 + 前缀XOR。
+非常棒的一道题目，比赛时想不出来，之后看了这个优秀的题解[mnizy: 简单的思路](https://leetcode-cn.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/solution/jian-dan-de-si-lu-by-mnizy/)。先说结论：哈希表 + 前缀XOR。
 
+一切要从“偶数频次”入手。对于每个字母来说，频次非奇即偶（奇数用1表示，偶数用0表示），那么状态（某个子串）可以用5位二进制数来表示，然后目标变成了：求字母频次奇偶性满足`00000`的最长子串。
 
+于是可以关联到另一种题型：求和为K的最长子数组（详见《子数组之和问题》），它的解法是“前缀和 + 哈希表”。同样，这道题也是这样做：
 
-## 参考
+- 前缀XOR：因为奇偶性就是二进制运算，字母的增减可以用XOR表达。
+- 哈希表：记录某个奇偶性的最小下标，以便向后遍历时能找到最大长度。
 
-- [mnizy: 简单的思路](https://leetcode-cn.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/solution/jian-dan-de-si-lu-by-mnizy/)
+具体编码就不细说了，可以直接看代码。再次强调，这道题出得太棒了！

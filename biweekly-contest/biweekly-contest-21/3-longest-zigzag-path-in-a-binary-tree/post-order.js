@@ -1,5 +1,5 @@
 /**
- * 后序遍历（DP）
+ * 后序遍历（树形DP）
  */
 var longestZigZag = function(root) {
   let res = 0;
