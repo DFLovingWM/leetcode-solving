@@ -1,0 +1,6 @@
+/**
+ * 
+ */
+var hasValidPath = function(grid) {
+
+};
