@@ -15,7 +15,7 @@ var canConstruct = function (s, k) {
   }
   // 奇偶
   let odd = 0;
-  for (const [ch, cnt] of freq) {
+  for (const cnt of freq.values()) {
     if (cnt & 1) {
       ++odd;
     }

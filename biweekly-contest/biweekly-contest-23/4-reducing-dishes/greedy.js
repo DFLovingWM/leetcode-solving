@@ -1,5 +1,7 @@
 /**
- * 贪心（后缀数组优化）
+ * 贪心：从全部菜开始，减菜（后缀数组优化）
+ * 
+ * 时间：O(NlogN), 104ms
  */
 var maxSatisfaction = function (sat) {
   // 升序
@@ -20,21 +22,10 @@ var maxSatisfaction = function (sat) {
   let res = sum;
   // 开始舍弃一些负数菜
   for (let i = 0; i < n; ++i) {
-    if (sat[i] < 0) {
-      const tmp = res - sat[i] - (i + 1 < n ? suffix[i + 1] : 0);
-      if (tmp > res) {
-        res = tmp;
-      }
-    }
+    const tmp = res - sat[i] - (i + 1 < n ? suffix[i + 1] : 0);
+    res = Math.max(res, tmp);
   }
   return res;
 };
 
-// [
-//   [-1,-8,0,5,-9],
-//   [4,3,2],
-//   [-1,-4,-5],
-//   [-2,5,-1,0,3,-3],
-// ].forEach(A=> {
-//   console.log(maxsat(A));
-// })
+module.exports = maxSatisfaction;
