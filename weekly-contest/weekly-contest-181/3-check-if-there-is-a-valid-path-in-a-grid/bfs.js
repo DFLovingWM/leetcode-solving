@@ -1,7 +1,7 @@
 /**
- * DFS（着色方案）
+ * BFS（着色方案）
  * 
- * 时间：? ms
+ * 时间：328ms
  */
 function hasValidPath(grid) {
   const m = grid.length;
@@ -19,38 +19,37 @@ function hasValidPath(grid) {
     const p = [grid[r1][c1], grid[r2][c2]];
     let pairs;
     if (dir === 0) { // 上
-      pairs = [[2, 5, 6], [2, 3, 4]];
+      pairs = [[2,5,6], [2,3,4]];
     } else if (dir === 1) { // 左
-      pairs = [[1, 3, 5], [1, 4, 6]];
+      pairs = [[1,3,5], [1,4,6]];
     } else if (dir === 2) { // 下
-      pairs = [[2, 3, 4], [2, 5, 6]];
+      pairs = [[2,3,4], [2,5,6]];
     } else { // 右
-      pairs = [[1, 4, 6], [1, 3, 5]];
+      pairs = [[1,4,6], [1,3,5]];
     }
     return pairs.every((_, i) => pairs[i].includes(p[i]));
   }
 
-  // DFS
-  function dfs(r, c) {
-    // 着色
-    visit[r][c] = true;
+  const queue = [[0, 0]];
+  visit[0][0] = true;
 
-    // 扩散
+  while (queue.length > 0) {
+    const [r, c] = queue.shift();
+    if (r === m - 1 && c === n - 1) {
+      return true;
+    }
+
     for (let i = 0; i < 4; ++i) {
       const [ro, co] = DIRS[i];
       const nr = r + ro;
       const nc = c + co;
       if (isValid(nr, nc) && !visit[nr][nc] && isConnected(r, c, nr, nc, i)) {
-        if (dfs(nr, nc)) {
-          return true;
-        }
+        visit[nr][nc] = true;
+        queue.push([nr, nc]);
       }
     }
-    return false;
   }
-
-  dfs(0, 0);
-  return visit[m - 1][n - 1];
+  return false;
 }
 
 module.exports = hasValidPath;
