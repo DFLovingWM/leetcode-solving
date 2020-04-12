@@ -1,7 +1,7 @@
 /**
  * DFS（着色方案）
  * 
- * 时间：? ms
+ * 感觉没问题但本题不能过，栈溢出
  */
 function hasValidPath(grid) {
   const m = grid.length;
@@ -32,6 +32,11 @@ function hasValidPath(grid) {
 
   // DFS
   function dfs(r, c) {
+    // 到达终点
+    if (r === m - 1 && c === n - 1) {
+      return true;
+    }
+
     // 着色
     visit[r][c] = true;
 
@@ -49,8 +54,7 @@ function hasValidPath(grid) {
     return false;
   }
 
-  dfs(0, 0);
-  return visit[m - 1][n - 1];
+  return dfs(0, 0);
 }
 
 module.exports = hasValidPath;
