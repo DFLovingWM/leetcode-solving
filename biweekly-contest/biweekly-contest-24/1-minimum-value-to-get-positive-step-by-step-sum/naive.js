@@ -1,5 +1,7 @@
 /**
  * 暴力
+ * 
+ * 时间：O(N)
  */
 var minStartValue = function(nums) {
   let res = 1;

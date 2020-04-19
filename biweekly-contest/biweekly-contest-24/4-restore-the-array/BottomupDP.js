@@ -1,5 +1,8 @@
 /**
  * Bottom-up DP
+ * 
+ * 时间：O(N)
+ * 空间：O(N)
  */
 var numberOfArrays = function(s, k) {
   const MOD = 1e9 + 7;

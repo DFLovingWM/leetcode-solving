@@ -1,5 +1,7 @@
 /**
- * 贪心（二分查找）
+ * 贪心（二分查找更好，线性也可以）
+ * 
+ * 时间：O(N)，其中N~=45
  */
 var findMinFibonacciNumbers = function(k) {
   // 先求出数组（k范围内）
