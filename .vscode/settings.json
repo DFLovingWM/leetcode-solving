@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "queue": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "chrono": "cpp"
   }
 }
