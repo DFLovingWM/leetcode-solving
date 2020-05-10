@@ -23,6 +23,7 @@ public:
         deque<int> deq; // 单调（递增）的双端队列
         int res = n + 1; // 结果
         for (int i = 0; i <= n; ++i) {
+            // 作为减数，下标越大、数字越小，就越好
             // 作为减数：比我更小的才能留下
             while (!deq.empty() && prefix[deq.back()] >= prefix[i]) {
                 deq.pop_back();

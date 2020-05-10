@@ -2,6 +2,8 @@
   "files.associations": {
     "queue": "cpp",
     "vector": "cpp",
-    "chrono": "cpp"
+    "chrono": "cpp",
+    "memory": "cpp",
+    "utility": "cpp"
   }
 }
