@@ -1,7 +1,7 @@
 /**
  * Top-down DP
  * 
- * 时间：O(N^3), 80ms
+ * 时间：O(N^3)
  */
 var removeBoxes = function (boxes) {
   const cache = new Map()

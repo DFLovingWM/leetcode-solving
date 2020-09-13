@@ -8,4 +8,6 @@
 - [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/)
 - [1000. 合并石头的最低成本](https://leetcode-cn.com/problems/minimum-cost-to-merge-stones/)
 - [546. 移除盒子](https://leetcode-cn.com/problems/remove-boxes/)
+  - 删除后连在一起
+  - 3维
 - [1246. 删除回文子数组](https://leetcode-cn.com/problems/palindrome-removal/)
