@@ -1,5 +1,5 @@
 /**
- * 
+ * 直接来
  */
 var calculate = function(s) {
   let [x, y] = [1, 0];
