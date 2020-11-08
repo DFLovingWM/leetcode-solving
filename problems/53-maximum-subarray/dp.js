@@ -1,20 +1,16 @@
 /**
- * 动态规划：
- * `dp[i]`表示以`i`结尾的子数组最大和
- * 
- * 时间：O(N), 80ms
+ * DP
  */
 var maxSubArray = function(nums) {
-  const n = nums.length
-  const dp = Array.from({ length: n + 1 }, () => 0)
-  let res = -Infinity
-
-  for (let i = 1; i <= n; ++i) {
-    dp[i] = Math.max(nums[i - 1], nums[i - 1] + dp[i - 1])
-    res = Math.max(res, dp[i])
+  const n = nums.length;
+  // dp[i]：表示以`nums[i]`结尾的子数组的最大和
+  const dp = new Array(n);
+  dp[0] = nums[0];
+  for (let i = 1; i < n; ++i) {
+    dp[i] = Math.max(
+      nums[i], // 1
+      nums[i] + dp[i - 1] // 2
+    );
   }
-
-  return res
+  return Math.max(...dp);
 };
-
-module.exports = maxSubArray
