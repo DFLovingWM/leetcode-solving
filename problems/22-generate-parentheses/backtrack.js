@@ -1,30 +1,26 @@
 /**
  * 回溯
- * 
- * 时间：64ms
  */
-var generateParenthesis = function (n) {
-  const res = []
-  backtrack(n * 2, '', 0, 0, res)
-  return res
+var generateParenthesis = function(n) {
+  const res = [];
+
+  function backtrack(s, left, right) {
+    if (left === n && right === n) {
+      res.push(s);
+      return;
+    }
+
+    // 1. 添加'('的条件：添加后'('总数不能超过n
+    if (left + 1 <= n) {
+      backtrack(s + '(', left + 1, right);
+    }
+
+    // 2. 添加')'的条件：添加后')'不能比'('多
+    if (right + 1 <= left) {
+      backtrack(s + ')', left, right + 1);
+    }
+  }
+
+  backtrack('', 0, 0);
+  return res;
 };
-
-// 对于每个位置，至多有'('和')'这2种选择
-function backtrack (n, acc, left, right, res) {
-  if (acc.length === n) {
-    res.push(acc)
-    return
-  }
-
-  // 左括号：只要不够一半，就能够添加
-  if (left < n / 2) {
-    backtrack(n, acc + '(', left + 1, right, res)
-  }
-
-  // 右括号：只要目前比左括号要少，就能添加
-  if (right < left) {
-    backtrack(n, acc + ')', left, right + 1, res)
-  }
-}
-
-module.exports = generateParenthesis

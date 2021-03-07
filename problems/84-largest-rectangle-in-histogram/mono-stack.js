@@ -1,70 +1,63 @@
 /**
- * 实际上是个【Next Smaller】问题，使用单调栈
- * 
- * 时间：O(N), 92ms
+ * NextSmaller问题，使用单调栈
  */
-var largestRectangleArea = function (heights) {
-  const n = heights.length
-  let stack
-
-  stack = new Stack()
-  const right = Array.from({ length: n }, () => n) // 右边的Next Smaller的下标
-  for (let i = n - 1; i >= 0; --i) {
-    while (!stack.empty() && heights[stack.top()] >= heights[i]) {
-      stack.pop()
-    }
-    if (!stack.empty()) {
-      right[i] = stack.top()
-    } else {
-      right[i] = n
-    }
-    stack.push(i)
+var largestRectangleArea = function(heights) {
+  const right = rightSmaller(heights);
+  const left = leftSmaller(heights);
+  let res = 0;
+  for (let i = 0; i < heights.length; ++i) {
+    const area = heights[i] * (right[i] - left[i] - 1); // 面积
+    res = Math.max(res, area);
   }
-
-  stack = new Stack()
-  const left = Array.from({ length: n }, () => -1) // 左边的Next Smaller的下标
-  for (let i = 0; i < n; ++i) {
-    while (!stack.empty() && heights[stack.top()] >= heights[i]) {
-      stack.pop()
-    }
-    if (!stack.empty()) {
-      left[i] = stack.top()
-    } else {
-      left[i] = -1
-    }
-    stack.push(i)
-  }
-
-  let maxArea = 0
-  for (let i = 0; i < n; ++i) {
-    let area = heights[i] * ((i - left[i] - 1) + (right[i] - i - 1) + 1)
-    maxArea = Math.max(maxArea, area)
-  }
-
-  return maxArea
+  return res;
 };
 
-// 栈
-class Stack {
-  constructor () {
-    this.arr = []
+function rightSmaller(heights) {
+  const n = heights.length;
+  const res = new Array(n);
+  const s = new Stack();
+  for (let i = n - 1; i >= 0; --i) { // 从右到左
+    while (!s.empty() && heights[i] <= heights[s.top()]) {
+      s.pop();
+    }
+    res[i] = !s.empty() ? s.top() : n; // 找不到，则为最右
+    s.push(i);
   }
-
-  top () {
-    return this.arr[this.arr.length - 1]
-  }
-
-  pop () {
-    return this.arr.pop()
-  }
-
-  push (x) {
-    this.arr.push(x)
-  }
-
-  empty () {
-    return this.arr.length === 0
-  }
+  return res;
 }
 
-module.exports = largestRectangleArea
+function leftSmaller(heights) {
+  const n = heights.length;
+  const res = new Array(n);
+  const s = new Stack();
+  for (let i = 0; i < n; ++i) { // 反之
+    while (!s.empty() && heights[i] <= heights[s.top()]) {
+      s.pop();
+    }
+    res[i] = !s.empty() ? s.top() : -1; // 反之
+    s.push(i);
+  }
+  return res;
+}
+
+class Stack {
+  constructor() {
+    this.arr = [];
+  }
+
+  empty() {
+    return this.arr.length === 0;
+  }
+
+  push(val) {
+    this.arr.push(val);
+  }
+
+  pop() {
+    return this.arr.pop();
+  }
+
+  top() {
+    return this.arr[this.arr.length - 1];
+  }
+}

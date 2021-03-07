@@ -13,7 +13,7 @@ var trap = function(heights) {
     leftMax[i] = Math.max(leftMax[i - 1], heights[i - 1])
   }
 
-  // 逆序最小
+  // 逆序最大
   const rightMax = Array.from({ length }, () => -Infinity)
   for (let i = length - 2; i >= 0; --i) {
     rightMax[i] = Math.max(rightMax[i + 1], heights[i + 1])
