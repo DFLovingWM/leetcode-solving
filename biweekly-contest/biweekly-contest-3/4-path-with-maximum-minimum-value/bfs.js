@@ -50,7 +50,7 @@ module.exports = maximumMinimumPath
 /**
  * 将数组转化为堆
  */
-function heapify (arr, comparator) {
+ function heapify (arr, comparator) {
   let heap = []
   for (const item of arr) {
     heapPush(heap, item, comparator)
